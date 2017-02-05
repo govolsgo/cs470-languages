@@ -16,6 +16,6 @@ third ((_,_,c):list) = c:(third list)
 -- Prints total weight of graph.
 weight (('a','b',c):list) = sum(third (('a','b',c):list))
 
--- tmp :: Char -> (Char, Char, Num) -> Bool
-tmp :: Eq a => a -> (a, t1, t) -> Bool
-tmp a (b,_,_) = a == b
+-- Checks if vertex is connected to an edge.
+checkVert :: Eq a => a -> (a, a, t) -> Bool
+checkVert a (b,c,_) = (a == b) || (a == c)
