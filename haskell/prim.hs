@@ -14,8 +14,11 @@ third ((_,_,c):list) = c:(third list)
 
 
 -- Prints total weight of graph.
-weight (('a','b',c):list) = sum(third (('a','b',c):list))
+weight (('a','b',w):list) = sum(third (('a','b',w):list))
 
--- Checks if vertex is connected to an edge.
-checkVert :: Eq a => a -> (a, a, t) -> Bool
-checkVert a (b,c,_) = (a == b) || (a == c)
+-- Checks if a vertex from vertex list is connected to a certain edge.
+checkVert :: Eq a => [a] -> (a, a, t) -> Bool
+checkVert vertices (a,b,_) = a `elem` vertices || b `elem` vertices
+
+-- listVerts [] = []
+-- listVerts  
