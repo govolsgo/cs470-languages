@@ -23,9 +23,8 @@ secondL ((_,b,_):list) = b:(secondL list)
 thirdL [] = []
 thirdL ((_,_,c):list) = c:(thirdL list)
 
-
 -- Prints total weight of graph.
-weight (('a','b',w):list) = sum(thirdL (('a','b',w):list))
+weightTot (('a','b',w):list) = sum(thirdL (('a','b',w):list))
 
 -- Checks if a vertex from vertex list is connected to a certain edge.
 -- checkVert :: Eq a => [a] -> (a, a, t) -> Bool
@@ -36,8 +35,11 @@ connEdges vertices [] = []
 connEdges vertices ((a,b,w):list) = if (checkVert vertices (a,b,w)) then ((a,b,w):connEdges vertices list) else (connEdges vertices list)
 
 -- Compares the weight of two edges.
-compEdge :: Ord b => (a, a, b) -> (a, a, b) -> Ordering
-compEdge a b = compare (third a) (third b)
+compEdges :: Ord b => (a, a, b) -> (a, a, b) -> Ordering
+compEdges a b = compare (third a) (third b)
 
 -- Prints an edge from a list with the smallest weight.
-minimalEdge a = minimumBy compEdge a
+minimalEdge list = minimumBy compEdges list
+
+-- Prints the smallest edge connected to a vertex in the list.
+minimalConnEdge vertices list = minimalEdge (connEdges vertices list)
