@@ -17,8 +17,10 @@ third ((_,_,c):list) = c:(third list)
 weight (('a','b',w):list) = sum(third (('a','b',w):list))
 
 -- Checks if a vertex from vertex list is connected to a certain edge.
-checkVert :: Eq a => [a] -> (a, a, t) -> Bool
+-- checkVert :: Eq a => [a] -> (a, a, t) -> Bool
 checkVert vertices (a,b,_) = a `elem` vertices || b `elem` vertices
 
--- listVerts [] = []
--- listVerts  
+-- Prints out list of all edges connected to a list of vertices.
+connEdges vertices [] = []
+connEdges vertices ((a,b,w):list) = if (checkVert vertices (a,b,w)) then ((a,b,w):connEdges vertices list) else (connEdges vertices list)
+
