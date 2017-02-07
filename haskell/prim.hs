@@ -28,7 +28,7 @@ weightTot (('a','b',w):list) = sum(thirdL (('a','b',w):list))
 
 -- Checks if a vertex from vertex list is connected to a certain edge.
 -- checkVert :: Eq a => [a] -> (a, a, t) -> Bool
-checkVert vertices (a,b,_) = a `elem` vertices || b `elem` vertices
+checkVert vertices (a,b,_) = ((a `elem` vertices) && not (b `elem` vertices)) || (not (a `elem` vertices) && (b `elem` vertices))
 
 -- Prints out list of all edges connected to a list of vertices.
 connEdges vertices [] = []
@@ -43,3 +43,4 @@ minimalEdge list = minimumBy compEdges list
 
 -- Prints the smallest edge connected to a vertex in the list.
 minimalConnEdge vertices list = minimalEdge (connEdges vertices list)
+
