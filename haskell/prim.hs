@@ -32,6 +32,7 @@ checkVert vertices (a,b,_) = ((a `elem` vertices) && not (b `elem` vertices)) ||
 
 -- Prints out list of all edges connected to a list of vertices.
 connEdges vertices [] = []
+connEdges [] ((a,b,w):list) = (a,b,w):connEdges [] list
 connEdges vertices ((a,b,w):list) = if (checkVert vertices (a,b,w)) then ((a,b,w):connEdges vertices list) else (connEdges vertices list)
 
 -- Compares the weight of two edges.
@@ -42,6 +43,7 @@ compEdges a b = compare (third a) (third b)
 minimalEdge list = minimumBy compEdges list
 
 -- Prints the smallest edge connected to a vertex in the list.
+minimalConnEdge [] list = minimalEdge (connEdges [] list)
 minimalConnEdge vertices list = minimalEdge (connEdges vertices list)
 
 -- Prints out the first and second vertices as a list.
