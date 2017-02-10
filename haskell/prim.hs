@@ -1,3 +1,21 @@
+{- |
+Module      :  prim.hs
+Description :  Computes a MST from a graph.
+Copyright   :  (c) Carter Crews, 2017
+License     :  <license>
+      
+Maintainer  :  carccrew@ut.utm.edu
+Stability   :  stable
+Portability :  POSIX
+      
+This file contains functions necessary to compute a Minimum Spanning Tree using
+Prim's algorithm. The prim function takes a graph as a list of 3-tuples. Each
+3-tuple contains information about an edge in the graph, such as what vertex is on
+each end of the edge and the weight of the edge. The other top-level function in
+this file is weight. It will calculate the total weight of a graph or tree
+submitted in the form of a list of 3-tuples as with prim.
+-}
+
 import Data.List
 
 -- The example graph from the assignment page is hard-coded in here.
