@@ -44,3 +44,6 @@ minimalEdge list = minimumBy compEdges list
 -- Prints the smallest edge connected to a vertex in the list.
 minimalConnEdge vertices list = minimalEdge (connEdges vertices list)
 
+-- Prints out the first and second vertices as a list.
+getVerts (a,b,c) = [first (a,b,c)] ++ [second (a,b,c)]
+
