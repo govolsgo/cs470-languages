@@ -2,7 +2,7 @@
 Module      :  prim.hs
 Description :  Computes a MST from a graph.
 Copyright   :  (c) Carter Crews, 2017
-License     :  <license>
+License     :  GPL-3
       
 Maintainer  :  carccrew@ut.utm.edu
 Stability   :  stable
