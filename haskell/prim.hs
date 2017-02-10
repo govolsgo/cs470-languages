@@ -1,6 +1,7 @@
 import Data.List
 
-graph = [('a','b',4),('a','h',10),('b','c',8),('b','h',11),('c','d',7),('c','f',4),('c','i',2),('d','e',9),('d','f',14),('e','f',10),('f','g',2),('g','h',1),('g','i',6),('h','i',7)]
+-- The example graph from the assignment page is hard-coded in here.
+exampleGraph = [('a','b',4),('a','h',10),('b','c',8),('b','h',11),('c','d',7),('c','f',4),('c','i',2),('d','e',9),('d','f',14),('e','f',10),('f','g',2),('g','h',1),('g','i',6),('h','i',7)]
 
 -- Returns 1st element from a 3-tuple.
 first (a,_,_) = a
@@ -27,7 +28,6 @@ thirdL ((_,_,c):list) = c:(thirdL list)
 weightTot (('a','b',w):list) = sum(thirdL (('a','b',w):list))
 
 -- Checks if a vertex from vertex list is connected to a certain edge.
--- checkVert :: Eq a => [a] -> (a, a, t) -> Bool
 checkVert vertices (a,b,_) = ((a `elem` vertices) && not (b `elem` vertices)) || (not (a `elem` vertices) && (b `elem` vertices))
 
 -- Prints out list of all edges connected to a list of vertices.
@@ -50,14 +50,17 @@ minimalConnEdge vertices list = minimalEdge (connEdges vertices list)
 -- Prints out the first and second vertices as a list.
 getVerts [(a,b,c)] = [first (a,b,c)] ++ [second (a,b,c)]
 
--- Check if the tree is finished.
+-- Check if the tree is finished. Return true if all of the vertices in the graph
+-- are in the vertices list.
 doneChk vertices list = sort (nub (firstL list ++ secondL list)) == sort (nub (vertices))
 
--- Prim function
+-- Prim function - Creates a MST from a graph.
+-- Gets the smallest edge in the list and then calls prim' on the rest.
 prim list = minimalConnEdge [] list ++ prim' (getVerts (minimalConnEdge [] list)) list
 
--- Prim' function
+-- Get the next edge to add to the list and check if we're done.
 prim' vertices list = minimalConnEdge vertices list ++ prim'' vertices list
 
--- Prim'' function
+-- Checks if the tree is complete. If so, return an empty list. If not,
+-- call prim' with the new list of vertices.
 prim'' vertices list = if(doneChk vertices list) then [] else(prim' (vertices ++ (getVerts (minimalConnEdge vertices list))) list)
