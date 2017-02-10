@@ -49,3 +49,8 @@ minimalConnEdge vertices list = minimalEdge (connEdges vertices list)
 -- Prints out the first and second vertices as a list.
 getVerts (a,b,c) = [first (a,b,c)] ++ [second (a,b,c)]
 
+-- Prim function
+prim list = [minimalConnEdge [] list] ++ prim' (getVerts (minimalConnEdge [] list)) list
+
+-- prim' vertices list = 0
+prim' vertices list = [minimalConnEdge vertices list] ++ prim' (vertices ++ (getVerts (minimalConnEdge vertices list))) list
