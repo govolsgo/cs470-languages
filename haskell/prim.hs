@@ -40,17 +40,24 @@ compEdges :: Ord b => (a, a, b) -> (a, a, b) -> Ordering
 compEdges a b = compare (third a) (third b)
 
 -- Prints an edge from a list with the smallest weight.
-minimalEdge list = minimumBy compEdges list
+minimalEdge [] = []
+minimalEdge list = [minimumBy compEdges list]
 
 -- Prints the smallest edge connected to a vertex in the list.
 minimalConnEdge [] list = minimalEdge (connEdges [] list)
 minimalConnEdge vertices list = minimalEdge (connEdges vertices list)
 
 -- Prints out the first and second vertices as a list.
-getVerts (a,b,c) = [first (a,b,c)] ++ [second (a,b,c)]
+getVerts [(a,b,c)] = [first (a,b,c)] ++ [second (a,b,c)]
+
+-- Check if the tree is finished.
+doneChk vertices list = sort (nub (firstL list ++ secondL list)) == sort (nub (vertices))
 
 -- Prim function
-prim list = [minimalConnEdge [] list] ++ prim' (getVerts (minimalConnEdge [] list)) list
+prim list = minimalConnEdge [] list ++ prim' (getVerts (minimalConnEdge [] list)) list
 
--- prim' vertices list = 0
-prim' vertices list = [minimalConnEdge vertices list] ++ prim' (vertices ++ (getVerts (minimalConnEdge vertices list))) list
+-- Prim' function
+prim' vertices list = minimalConnEdge vertices list ++ prim'' vertices list
+
+-- Prim'' function
+prim'' vertices list = if(doneChk vertices list) then [] else(prim' (vertices ++ (getVerts (minimalConnEdge vertices list))) list)
