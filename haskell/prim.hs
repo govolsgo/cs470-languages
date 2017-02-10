@@ -25,7 +25,7 @@ thirdL [] = []
 thirdL ((_,_,c):list) = c:(thirdL list)
 
 -- Prints total weight of graph.
-weightTot (('a','b',w):list) = sum(thirdL (('a','b',w):list))
+weight list = sum(thirdL list)
 
 -- Checks if a vertex from vertex list is connected to a certain edge.
 checkVert vertices (a,b,_) = ((a `elem` vertices) && not (b `elem` vertices)) || (not (a `elem` vertices) && (b `elem` vertices))
