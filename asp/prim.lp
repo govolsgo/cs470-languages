@@ -21,3 +21,5 @@ edge(g,h,1).
 edge(g,i,6).
 edge(h,i,7).
 
+% Graph is undirected
+edge(A,B,W) :- edge(B,A,W).
