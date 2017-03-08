@@ -3,7 +3,7 @@
 % 2017
 
 % Vertices
-vertex(a;b;c;d;e;f;g;h;i).
+node(a;b;c;d;e;f;g;h;i).
 
 % Edges
 edge(a,b,4).
