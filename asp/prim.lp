@@ -23,3 +23,10 @@ edge(h,i,7).
 
 % Graph is undirected
 edge(A,B,W) :- edge(B,A,W).
+
+% Find connected edges
+route(A,B) :- edge(A,B,_).
+route(A,C) :- edge(A,B,_), edge(B,C,_), A!=C.
+route(A,C) :- route(A,B), edge(B,C,_), A!=C.
+
+#show route/2.
