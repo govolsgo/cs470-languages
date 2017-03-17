@@ -29,4 +29,8 @@ route(A,B) :- edge(A,B,_).
 route(A,C) :- edge(A,B,_), edge(B,C,_), A!=C.
 route(A,C) :- route(A,B), edge(B,C,_), A!=C.
 
-#show route/2.
+% Create trees from routes
+tree(start,B,W) :- edge(start,B,W).
+tree(A,B,W) : edge(A,B,W) :- route(B,start).
+
+#show tree/3.
