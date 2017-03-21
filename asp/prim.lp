@@ -33,5 +33,9 @@ route(A,C) :- route(A,B), edge(B,C,_), A!=C.
 tree(start,B,W) :- edge(start,B,W).
 tree(A,B,W) : edge(A,B,W) :- route(B,start).
 
-#minimize {W,A,B : tree(A,B,W)}.
-#show tree/3.
+% Evals to true when a node is in the tree.
+visited(start) :- node(start).
+visited(B) :- visited(A), tree(A,B,W).
+
+%#minimize {W,A,B : tree(A,B,W)}.
+%#show visited/1.
