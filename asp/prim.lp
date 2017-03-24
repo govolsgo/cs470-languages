@@ -30,12 +30,14 @@ route(A,C) :- edge(A,B,_), edge(B,C,_), A!=C.
 route(A,C) :- route(A,B), edge(B,C,_), A!=C.
 
 % Create trees from routes
-tree(start,B,W) :- edge(start,B,W).
-tree(A,B,W) : edge(A,B,W) :- route(B,start).
+tree(A,B,W) ; not tree(A,B,W) :- edge(A,B,W).
+:- node(A), not visited(A).
+:- tree(A,B,W), B=start.
+:- tree(A,B,W), tree(B,A,W), A!=B.
 
 % Evals to true when a node is in the tree.
 visited(start) :- node(start).
 visited(B) :- visited(A), tree(A,B,W).
 
-%#minimize {W,A,B : tree(A,B,W)}.
-%#show visited/1.
+#minimize {W,A,B : tree(A,B,W)}.
+#show tree/3.
