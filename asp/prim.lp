@@ -2,6 +2,7 @@
 % ASP Prim Implementation
 % 2017
 
+%%%%% FACTS %%%%%
 % Vertices
 node(a;b;c;d;e;f;g;h;i).
 
@@ -21,14 +22,7 @@ edge(g,h,1).
 edge(g,i,6).
 edge(h,i,7).
 
-% Graph is undirected
-edge(A,B,W) :- edge(B,A,W).
-
-% Find connected edges
-route(A,B) :- edge(A,B,_).
-route(A,C) :- edge(A,B,_), edge(B,C,_), A!=C.
-route(A,C) :- route(A,B), edge(B,C,_), A!=C.
-
+%%%%% RULES %%%%%
 % Create trees from routes
 tree(A,B,W) ; not tree(A,B,W) :- edge(A,B,W).
 :- node(A), not visited(A).
@@ -38,6 +32,9 @@ tree(A,B,W) ; not tree(A,B,W) :- edge(A,B,W).
 % Evals to true when a node is in the tree.
 visited(start) :- node(start).
 visited(B) :- visited(A), tree(A,B,W).
+
+% Graph is undirected
+edge(A,B,W) :- edge(B,A,W).
 
 #minimize {W,A,B : tree(A,B,W)}.
 #show tree/3.
