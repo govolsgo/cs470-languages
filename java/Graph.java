@@ -1,14 +1,18 @@
 import java.util.ArrayList;
 import java.util.TreeMap;
 import java.util.Map;
+import java.util.Collections;
 
 public class Graph{
     private ArrayList<String> vertices = new ArrayList<String>();
     private ArrayList<TreeMap<String,Integer>> edges = new ArrayList<TreeMap<String,Integer>>();
     
     public void addVert(String newVert){
-	vertices.add(newVert);
-	edges.add(new TreeMap<String,Integer>()); // Add a new TreeMap that corresponds to this vert.	
+	if(!vertices.contains(newVert)){
+		vertices.add(newVert);
+		edges.add(new TreeMap<String,Integer>()); // Add a new TreeMap that corresponds to this vert.
+		Collections.sort(vertices);
+	    }
     }
 
     public void printVerts(){
