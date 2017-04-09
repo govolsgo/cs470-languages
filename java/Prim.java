@@ -16,6 +16,8 @@ public class Prim {
 
 	inputGraph.printVerts();
 	inputGraph.printEdges();
+	System.out.println("sizeVerts: " + inputGraph.sizeVerts());
+	System.out.println("sizeEdges: " + inputGraph.sizeEdges());
     }
 
     static Graph readGraph(String[] args){
@@ -64,7 +66,7 @@ public class Prim {
 	catch(Exception e){
 	    // Catch FileNotFound or IO exceptions.
 	    // Print error and exit.
-	    System.out.println(e.getMessage());
+	    System.out.println("Exception: " + e.getMessage());
 	    System.exit(0);
 	}
 

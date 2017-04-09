@@ -6,11 +6,14 @@ import java.util.Collections;
 public class Graph{
     private ArrayList<String> vertices = new ArrayList<String>();
     private ArrayList<TreeMap<String,Integer>> edges = new ArrayList<TreeMap<String,Integer>>();
+    private int numVerts = 0;
+    private int numEdges = 0;
     
     public void addVert(String newVert){
 	if(!vertices.contains(newVert)){
 	    // Add the new vertex if it's not already in the list.
 	    vertices.add(newVert);
+	    numVerts++;
 	    
 	    // Add a new TreeMap that corresponds to this vert.
 	    edges.add(new TreeMap<String,Integer>()); 
@@ -39,6 +42,7 @@ public class Graph{
 	// Add the edge to the list.
 	adjList1.put(vert2,weight);
 	adjList2.put(vert1,weight);
+	numEdges++;
 	
 	// Repack the TreeMap.
 	edges.set(loc1,adjList1);
@@ -56,5 +60,17 @@ public class Graph{
 	    }
 	    System.out.print("\n");
 	}
+    }
+
+    public int sizeVerts(){
+	return numVerts;
+    }
+    
+    public int sizeEdges(){
+	return numEdges;
+    }
+    
+    public void printGraph(){
+	
     }
 }
