@@ -15,7 +15,7 @@ public class Prim {
 	}
 
 	inputGraph.printVerts();
-	//inputGraph.printEdges();
+	inputGraph.printEdges();
     }
 
     static Graph readGraph(String[] args){
@@ -45,39 +45,21 @@ public class Prim {
 		line = inFile.readLine();
 	    }
 
-	    // System.out.println("Read input successfully.");
-	    //System.out.println("Line count: " + lineCount);
-
 	    // Create vertices.
 	    for(int i = 0; i < lineCount; i++){
-		//System.out.println("Creating vertices, line: " + i);
 		// Add vertices to list.
 		inputGraph.addVert(inputFile.get(i*3));
-		//		System.out.println("Adding
 		inputGraph.addVert(inputFile.get(i*3+1));
-
-		//System.out.println(line);
 	    }
-		    /*
-	    line = inFile.readLine();
-	    numEdges = Integer.parseInt(line); // Read number of edges.
-
+	    
 	    // Create edges.
-	    for(int i = 0; i < numEdges; i++){
-		// Read in next line from file.
-		line = inFile.readLine();
-
-
-
-		/*	System.out.println(parsed[0]);
-		System.out.println(parsed[1]);
-		System.out.println(parsed[2]);
-		
+	    for(int i = 0; i < lineCount; i++){
 		// Add edge to list.
-		inputGraph.addEdge(parsed[0],parsed[1],Integer.parseInt(parsed[2]));
+		inputGraph.addEdge(inputFile.get(i*3),
+				   inputFile.get(i*3+1),
+				   Integer.parseInt(inputFile.get(i*3+2)));
 		
-		//System.out.println(line);
-		}*/
+	    }
 	}
 	catch(Exception e){
 	    // Catch FileNotFound or IO exceptions.
