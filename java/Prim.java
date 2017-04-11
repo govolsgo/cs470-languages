@@ -105,4 +105,33 @@ public class Prim {
 	    System.out.println(formattedGraph.get(i));
 	}
     }
+
+    private void printMSTVerts(){
+	mst.printVerts();
+    }
+
+    private void printMSTEdges(){
+	mst.printEdges();
+    }
+
+    private int sizeMSTVerts(){
+	return mst.sizeVerts();
+    }
+
+    private int sizeMSTEdges(){
+	return mst.sizeEdges();
+    }
+
+    private int MSTWeight(){
+	return mst.weight();
+    }
+
+    private void printMSTGraph(){
+    	ArrayList<String> formattedGraph = inputGraph.getEdges();
+
+	System.out.println("MST Graph:");
+	for(int i = 0; i < formattedGraph.size(); i++){
+	    System.out.println(formattedGraph.get(i));
+	}
+    }
 }
