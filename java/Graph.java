@@ -76,7 +76,37 @@ public class Graph{
 	return totWeight;
     }
     
-    /*public ArrayList[] getEdges(int){
+    public ArrayList<String> getEdges(){
+	ArrayList<String> formattedEdges = new ArrayList<String>();
+
+	for(int i = 0; i < edges.size(); i++){
+	    // Unpack to create the ArrayList.
+	    TreeMap<String,Integer> edgeMap = edges.get(i);
+	    for (Map.Entry<String,Integer> entry : edgeMap.entrySet()) {
+		String formattedEdge;
+		String reverseFormattedEdge;
+
+		// Create string of the edge in proper format.
+		formattedEdge =  "(" + vertices.get(i) + ",";
+		formattedEdge += entry.getKey() + "," + entry.getValue() + ")";
+		//System.out.println("formattedEdge = " + formattedEdge);
+
+		// Create a string of the same edge, but vertices swapped.
+		// Will use this to make sure the edge is not in the array already.
+		reverseFormattedEdge =  "(" + entry.getKey() + ",";
+		reverseFormattedEdge += vertices.get(i) + "," + entry.getValue() + ")";
+		//System.out.println("reverseFormattedEdge = " + reverseFormattedEdge);
+		
+		// Check if reverseFormattedEdge is in ArrayList.
+		// Add formattedEdge if not.
+		if(!formattedEdges.contains(reverseFormattedEdge)){
+		    formattedEdges.add(formattedEdge);
+		}
+		   
+	    }
+	    //System.out.print("\n");
+	}
 	
-      }*/
+	return formattedEdges;
+      }
 }
