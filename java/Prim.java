@@ -3,34 +3,30 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 public class Prim {
+    private Graph inputGraph = new Graph();
+    private Graph mst = new Graph();
+    
     public static void main(String[] args) {
-	Graph inputGraph = new Graph();
+	Prim primObj = new Prim();
 
 	if(args.length > 0){
-	    inputGraph = readGraph(args); // Read in a graph.
+	    primObj.readGraph(args); // Read in a graph.
 	}
 	else{
 	    System.out.println("No input file specified.");
 	    System.exit(0);
 	}
 
-	inputGraph.printVerts();
-	inputGraph.printEdges();
-	System.out.println("sizeVerts: " + inputGraph.sizeVerts());
-	System.out.println("sizeEdges: " + inputGraph.sizeEdges());
-	System.out.println("totWeight: " + inputGraph.weight());
+	primObj.printInputVerts();
+	primObj.printInputEdges();
+	System.out.println("sizeVerts: " + primObj.sizeInputVerts());
+	System.out.println("sizeEdges: " + primObj.sizeInputEdges());
+	System.out.println("totWeight: " + primObj.inputWeight());
 
-	ArrayList<String> test = inputGraph.getEdges();
-
-	System.out.println("Formatted Edges:");
-	for(int i = 0; i < test.size(); i++){
-	    System.out.println(test.get(i));
-	}
+	primObj.printInputGraph();
     }
 
-    static Graph readGraph(String[] args){
-	Graph inputGraph = new Graph();
-
+    private Graph readGraph(String[] args){
 	try{
 	    int lineCount = 0;
 	    String line;	
@@ -79,5 +75,34 @@ public class Prim {
 	}
 
 	return inputGraph;
+    }
+
+    private void printInputVerts(){
+	inputGraph.printVerts();
+    }
+
+    private void printInputEdges(){
+	inputGraph.printEdges();
+    }
+
+    private int sizeInputVerts(){
+	return inputGraph.sizeVerts();
+    }
+
+    private int sizeInputEdges(){
+	return inputGraph.sizeEdges();
+    }
+
+    private int inputWeight(){
+	return inputGraph.weight();
+    }
+
+    private void printInputGraph(){
+    	ArrayList<String> formattedGraph = inputGraph.getEdges();
+
+	System.out.println("Input Graph:");
+	for(int i = 0; i < formattedGraph.size(); i++){
+	    System.out.println(formattedGraph.get(i));
+	}
     }
 }
