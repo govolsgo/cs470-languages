@@ -8,6 +8,7 @@ public class Graph{
     private ArrayList<TreeMap<String,Integer>> edges = new ArrayList<TreeMap<String,Integer>>();
     private int numVerts = 0;
     private int numEdges = 0;
+    private int totWeight = 0;
     
     public void addVert(String newVert){
 	if(!vertices.contains(newVert)){
@@ -43,6 +44,7 @@ public class Graph{
 	adjList1.put(vert2,weight);
 	adjList2.put(vert1,weight);
 	numEdges++;
+	totWeight += weight; // Update weight.
 	
 	// Repack the TreeMap.
 	edges.set(loc1,adjList1);
@@ -69,8 +71,12 @@ public class Graph{
     public int sizeEdges(){
 	return numEdges;
     }
-    
-    public void printGraph(){
-	
+
+    public int weight(){
+	return totWeight;
     }
+    
+    /*public ArrayList[] getEdges(int){
+	
+      }*/
 }

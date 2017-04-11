@@ -18,6 +18,7 @@ public class Prim {
 	inputGraph.printEdges();
 	System.out.println("sizeVerts: " + inputGraph.sizeVerts());
 	System.out.println("sizeEdges: " + inputGraph.sizeEdges());
+	System.out.println("totWeight: " + inputGraph.weight());
     }
 
     static Graph readGraph(String[] args){
