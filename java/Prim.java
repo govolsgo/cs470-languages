@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 public class Prim {
     private Graph inputGraph = new Graph();
@@ -24,6 +25,7 @@ public class Prim {
 	System.out.println("totWeight: " + primObj.inputWeight());
 
 	primObj.printInputGraph();
+	primObj.createMST();
     }
 
     private Graph readGraph(String[] args){
@@ -133,5 +135,37 @@ public class Prim {
 	for(int i = 0; i < formattedGraph.size(); i++){
 	    System.out.println(formattedGraph.get(i));
 	}
+    }
+
+    private void createMST(){
+	Graph workingGraph = inputGraph;
+	ArrayList<String> vertsWorking = workingGraph.getVerts();
+	ArrayList<String> vertsMST = mst.getVerts();
+	String minEdge;
+	int minWeight;
+	TreeMap<String,Integer> edgeSet;
+
+	// First run, prime MST.
+	// Find the smallest edge connected to the first vertex.
+	minEdge = workingGraph.getMinEdge(0);
+	edgeSet = workingGraph.getEdges(vertsWorking.get(0));
+	minWeight = edgeSet.get(minEdge);
+	
+	// Add both vertices and the edge to the MST.
+	mst.addVert(vertsWorking.get(0));
+	mst.addVert(minEdge);
+	mst.addEdge(vertsWorking.get(0), minEdge, minWeight);
+
+	// Remove added edge from workingGraph.
+	workingGraph.removeEdge(vertsWorking.get(0), minEdge);
+
+	// Update vertex lists.
+	vertsWorking = workingGraph.getVerts();
+	vertsMST = mst.getVerts();
+
+	// Loop to create the rest of the graph.
+	//while(vertsWorking != vertsMST){
+	    
+	//}
     }
 }
