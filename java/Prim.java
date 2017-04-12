@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.TreeMap;
+import java.util.Map;
 
 public class Prim {
     private Graph inputGraph = new Graph();
@@ -148,24 +149,61 @@ public class Prim {
 	// First run, prime MST.
 	// Find the smallest edge connected to the first vertex.
 	minEdge = workingGraph.getMinEdge(0);
-	edgeSet = workingGraph.getEdges(vertsWorking.get(0));
+	edgeSet = workingGraph.getEdges(workingGraph.getVerts(0));
 	minWeight = edgeSet.get(minEdge);
 	
 	// Add both vertices and the edge to the MST.
-	mst.addVert(vertsWorking.get(0));
+	mst.addVert(workingGraph.getVerts(0));
 	mst.addVert(minEdge);
-	mst.addEdge(vertsWorking.get(0), minEdge, minWeight);
+	mst.addEdge(workingGraph.getVerts(0), minEdge, minWeight);
 
 	// Remove added edge from workingGraph.
-	workingGraph.removeEdge(vertsWorking.get(0), minEdge);
-
-	// Update vertex lists.
-	vertsWorking = workingGraph.getVerts();
-	vertsMST = mst.getVerts();
+	workingGraph.removeEdge(workingGraph.getVerts(0), minEdge);
 
 	// Loop to create the rest of the graph.
-	//while(vertsWorking != vertsMST){
-	    
-	//}
+	while(workingGraph.getVerts() != mst.getVerts()){
+	    Graph missingVerts = new Graph();
+	    	    
+	    // Create a Graph object that contains the edges connected to
+	    // vertices not in the MST.
+	    for(int i = 0; i < workingGraph.sizeVerts(); i++){
+		if(!mst.getVerts().contains(workingGraph.getVerts(i))){
+		    String vertToAdd = workingGraph.getVerts(i);
+		    missingVerts.addEdgeSet(vertToAdd, workingGraph.getEdges(vertToAdd));
+		}
+	    }
+
+	    System.out.println("missingverts:");
+	    missingVerts.printEdges();
+	    System.out.println("test1");
+
+	    // Remove edges that are not connected to the MST at all.
+	    for(int i = 0; i < missingVerts.sizeVerts(); i++){
+		TreeMap<String,Integer> workingEdgeSet;
+		workingEdgeSet = missingVerts.getEdges(missingVerts.getVerts(i));
+		edgeSet = workingEdgeSet;
+
+		System.out.println("test3");
+
+		for(Map.Entry<String,Integer> entry : edgeSet.entrySet()) {
+		    System.out.print("hey");
+		    if(!mst.getVerts().contains(entry.getKey())){
+
+			System.out.println(" there");
+
+			workingEdgeSet.remove(entry.getKey());
+
+			System.out.println("uhyeah");
+		    }
+		}
+
+		System.out.println("test2");
+
+		// Save modified TreeMap.
+		missingVerts.updateEdgeSet(missingVerts.getVerts(i), workingEdgeSet);
+
+		System.out.println("made it!");
+	    }
+	}
     }
 }
