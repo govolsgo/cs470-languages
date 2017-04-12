@@ -115,7 +115,7 @@ public class Graph{
 	return vertices;
 }
 
-    public void removeEdge(String vert1, String vert2, int weight){
+    public void removeEdge(String vert1, String vert2){
 	int loc1 = vertices.indexOf(vert1);
 	int loc2 = vertices.indexOf(vert2);
 
@@ -124,17 +124,18 @@ public class Graph{
 	TreeMap<String,Integer> adjList2 = edges.get(loc2);
 
 	// Remove the edge from the list.
+	totWeight -= adjList1.get(vert2); // Update weight.
 	adjList1.remove(vert2);
 	adjList2.remove(vert1);
 	numEdges--;
-	totWeight -= weight; // Update weight.
+	
 	
 	// Repack the TreeMap.
 	edges.set(loc1,adjList1);
 	edges.set(loc2,adjList2);
     }
 
-    protected String getMinEdge(int loc){
+    public String getMinEdge(int loc){
 	TreeMap<String,Integer> edgeSet = edges.get(loc);
 	String minKey = edgeSet.firstKey();
 
