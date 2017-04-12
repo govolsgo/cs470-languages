@@ -89,24 +89,60 @@ public class Graph{
 		// Create string of the edge in proper format.
 		formattedEdge =  "(" + vertices.get(i) + ",";
 		formattedEdge += entry.getKey() + "," + entry.getValue() + ")";
-		//System.out.println("formattedEdge = " + formattedEdge);
-
+		
 		// Create a string of the same edge, but vertices swapped.
 		// Will use this to make sure the edge is not in the array already.
 		reverseFormattedEdge =  "(" + entry.getKey() + ",";
 		reverseFormattedEdge += vertices.get(i) + "," + entry.getValue() + ")";
-		//System.out.println("reverseFormattedEdge = " + reverseFormattedEdge);
-		
+				
 		// Check if reverseFormattedEdge is in ArrayList.
 		// Add formattedEdge if not.
 		if(!formattedEdges.contains(reverseFormattedEdge)){
 		    formattedEdges.add(formattedEdge);
 		}
-		   
 	    }
-	    //System.out.print("\n");
 	}
-	
 	return formattedEdges;
       }
+
+    public TreeMap<String,Integer> getEdges(String vert){
+	int location = vertices.indexOf(vert);
+
+	return edges.get(location);
+    }
+
+    public ArrayList<String> getVerts(){
+	return vertices;
+}
+
+    public void removeEdge(String vert1, String vert2, int weight){
+	int loc1 = vertices.indexOf(vert1);
+	int loc2 = vertices.indexOf(vert2);
+
+	// Unpack the TreeMap for each vertex of the edge.
+	TreeMap<String,Integer> adjList1 = edges.get(loc1);
+	TreeMap<String,Integer> adjList2 = edges.get(loc2);
+
+	// Remove the edge from the list.
+	adjList1.remove(vert2);
+	adjList2.remove(vert1);
+	numEdges--;
+	totWeight -= weight; // Update weight.
+	
+	// Repack the TreeMap.
+	edges.set(loc1,adjList1);
+	edges.set(loc2,adjList2);
+    }
+
+    protected String getMinEdge(int loc){
+	TreeMap<String,Integer> edgeSet = edges.get(loc);
+	String minKey = edgeSet.firstKey();
+
+	for (Map.Entry<String,Integer> entry : edgeSet.entrySet()) {
+	    if(entry.getValue() < edgeSet.get(minKey)){
+		minKey = entry.getKey();
+	    }
+	}
+	return minKey;
+    }
 }
