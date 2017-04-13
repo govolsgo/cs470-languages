@@ -3,6 +3,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.TreeMap;
 import java.util.Map;
+import java.util.Set;
 
 public class Prim {
     private Graph inputGraph = new Graph();
@@ -167,19 +168,27 @@ public class Prim {
 	System.out.print("\n");
 	printMSTEdges();
 
-	String[] newEdge = getMinConnEdge();
-	System.out.println("v1: " + newEdge[0]);
-	System.out.println("v2: " + newEdge[1] + "\n");
-	
-	mst.addVert(newEdge[1]);
-	mst.addEdge(newEdge[0],newEdge[1],Integer.parseInt(newEdge[2]));
 
-	workingGraph.removeEdge(newEdge[0],newEdge[1]);
-
-	System.out.println("big test");
-	workingGraph.printEdges();
-	System.out.print("\n");
-	mst.printEdges();
+	while(workingGraph.getVerts() != mst.getVerts()){
+	    String[] newEdge = getMinConnEdge();
+	    //System.out.println("v1: " + newEdge[0]);
+	    //System.out.println("v2: " + newEdge[1] + "\n");
+	    
+	    mst.addVert(newEdge[1]);
+	    mst.addEdge(newEdge[0],newEdge[1],Integer.parseInt(newEdge[2]));
+	    
+	    workingGraph.removeEdge(newEdge[0],newEdge[1]);
+	    
+	    preventCycles();
+	    
+	    System.out.println("workingGraph");
+	    workingGraph.printEdges();
+	    System.out.print("\nMST\n");
+	    //mst.printEdges();
+	    //printInputGraph();
+	    printMSTGraph();
+	    System.out.print("\n");
+	}
 	/*
 	// Loop to create the rest of the graph.
 	while(workingGraph.getVerts() == mst.getVerts()){
@@ -297,5 +306,22 @@ public class Prim {
 	//System.out.println("v2: " + v2);
 	//System.out.println("min: " + minEdge);
 	
+    }
+
+    private void preventCycles(){
+	ArrayList<String> addedVerts = mst.getVerts();
+
+	for(int i = 0; i < addedVerts.size(); i++){
+	    String workingVert = addedVerts.get(i);
+	    TreeMap<String,Integer> edges = workingGraph.getEdges(workingVert);
+	    Set<Map.Entry<String,Integer>> edgeSet = edges.entrySet();
+	    
+	    for(Map.Entry<String,Integer> entry : edgeSet){
+		if(addedVerts.contains(entry.getKey())){
+		    System.out.println("\n\n\nRemoving: " + workingVert + " " + entry.getKey() + "\n\n\n");
+		    workingGraph.removeEdge(workingVert, entry.getKey());
+		}
+	    }
+	}
     }
 }

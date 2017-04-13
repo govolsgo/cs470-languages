@@ -15,12 +15,14 @@ public class Graph{
 	    // Add the new vertex if it's not already in the list.
 	    vertices.add(newVert);
 	    numVerts++;
-	    
-	    // Add a new TreeMap that corresponds to this vert.
-	    edges.add(new TreeMap<String,Integer>()); 
 
 	    // Sort the vertex list lexicographically.
-	    Collections.sort(vertices); 
+	    Collections.sort(vertices);
+	    
+	    // Add a new TreeMap that corresponds to this vert.
+	    edges.add(vertices.indexOf(newVert), new TreeMap<String,Integer>()); 
+
+	     
 	}
     }
 
