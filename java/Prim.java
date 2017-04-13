@@ -1,3 +1,12 @@
+/**
+ * This class contains functions to create a minimum spanning tree from a Graph
+ * class using Prim's Algorithm.
+ *
+ * @author Carter Crews
+ * @version 1.0
+ * @since 2017-04-12
+ */
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -14,7 +23,12 @@ public class Prim {
 
     // New Graph object to store a copy of inputGraph we can modify.
     private Graph workingGraph = new Graph();
-    
+
+    /**
+     * The main function to create a minimum spanning tree.
+     * 
+     * @param args Arguments from the command line invocation of the program.
+     */
     public static void main(String[] args) {
 	Prim primObj = new Prim();
 
@@ -37,6 +51,9 @@ public class Prim {
 	primObj.printMSTGraph();
     }
 
+    /**
+     * Create a minimum spanning tree from a given graph.
+     */
     public void createMST(){
 	String minEdge;
 	int minWeight;
@@ -75,7 +92,12 @@ public class Prim {
 	    preventCycles();
 	}
     }
-    
+
+    /**
+     * Find the smallest edge that is connected to the MST.
+     *
+     * @return String[] Returns an array with the smallest edge.
+     */
     private String[] getMinConnEdge(){
 	ArrayList<String> vertices = mst.getVerts();
 	
@@ -121,14 +143,27 @@ public class Prim {
 	return minEdgeVerts;
     }
 
+    /**
+     * Gets the weight of the input graph.
+     *
+     * @return int The weight of the input graph.
+     */
     public int inputWeight(){
 	return inputGraph.weight();
     }
 
+    /**
+     * Gets the weight of the MST.
+     *
+     * @return int The weight of the MST.
+     */
     public int MSTWeight(){
 	return mst.weight();
     }
 
+    /**
+     * Removes edges from the temporary graph that would create a cycle.
+     */
     private void preventCycles(){
 	ArrayList<String> addedVerts = mst.getVerts();
 
@@ -152,7 +187,10 @@ public class Prim {
 	    }
 	}
     }
-    
+
+    /**
+     * Prints the input graph to the console.
+     */
     public void printInputGraph(){
 	// Create ArrayList to store formatted edges for output.
     	ArrayList<String> formattedGraph = inputGraph.getEdges();
@@ -164,6 +202,9 @@ public class Prim {
 	}
     }
 
+    /**
+     * Prints the minimum spanning tree to the console.
+     */
     public void printMSTGraph(){
     	ArrayList<String> formattedGraph = mst.getEdges();
 
@@ -172,7 +213,12 @@ public class Prim {
 	    System.out.println(formattedGraph.get(i));
 	}
     }
-    
+
+    /**
+     * Read in a graph from a file.
+     *
+     * @param fileLoc The location of the file to import.
+     */
     public void readGraph(String fileLoc){
 	try{
 	    int lineCount = 0;
@@ -216,7 +262,6 @@ public class Prim {
 		workingGraph.addEdge(inputFile.get(i*3),
 				   inputFile.get(i*3+1),
 				   Integer.parseInt(inputFile.get(i*3+2)));
-		
 	    }
 	}
 	catch(Exception e){
@@ -227,18 +272,38 @@ public class Prim {
 	}
     }
 
+    /**
+     * Gets the number of edges in the input graph.
+     *
+     * @return int The number of edges in the input graph.
+     */
     public int sizeInputEdges(){
 	return inputGraph.sizeEdges();
     }
-    
+
+    /**
+     * Gets the number of vertices in the input graph.
+     *
+     * @return int The number of vertices in the input graph.
+     */
     public int sizeInputVerts(){
 	return inputGraph.sizeVerts();
     }
 
+    /**
+     * Gets the number of edges in the MST.
+     *
+     * @return int The number of edges in the MST.
+     */
     public int sizeMSTEdges(){
 	return mst.sizeEdges();
     }
-    
+
+    /**
+     * Gets the number of vertices in the MST.
+     *
+     * @return int The number of vertices in the MST.
+     */
     public int sizeMSTVerts(){
 	return mst.sizeVerts();
     }
