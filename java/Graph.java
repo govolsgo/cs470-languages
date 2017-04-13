@@ -1,3 +1,12 @@
+/**
+ * This class contains functions to store an undirected graph. Used with
+ * Prim.java to create a minimum spanning tree.
+ *
+ * @author Carter Crews
+ * @version 1.0
+ * @since 2017-04-12
+ */
+
 import java.util.ArrayList;
 import java.util.TreeMap;
 import java.util.Map;
@@ -23,6 +32,13 @@ public class Graph{
     // New int to track the total weight of the graph.
     private int totWeight = 0;
 
+    /**
+     * Adds an edge to the graph.
+     *
+     * @param vert1 The name of the first vertex.
+     * @param vert2 The name of the second vertex.
+     * @param weight The weight of the edge.
+     */
     public void addEdge(String vert1, String vert2, int weight){
 	// Get the index location of each vertex to pull the edge data.
 	int loc1 = vertices.indexOf(vert1);
@@ -42,7 +58,12 @@ public class Graph{
 	edges.set(loc1,adjList1);
 	edges.set(loc2,adjList2);
     }
-    
+
+    /**
+     * Adds a vertex to the graph. Must be called before you can add an edge.
+     *
+     * @param newVert The name of the vertex to add.
+     */
     public void addVert(String newVert){
 	if(!vertices.contains(newVert)){
 	    // Add the new vertex if it's not already in the list.
@@ -57,6 +78,11 @@ public class Graph{
 	}
     }
 
+    /**
+     * Get the edges in the graph, formatted for printing.
+     *
+     * @return ArrayList An array of the edges.
+     */
     public ArrayList<String> getEdges(){
 	// Create an ArrayList to store the edges formatted for printing.
 	ArrayList<String> formattedEdges = new ArrayList<String>();
@@ -91,12 +117,24 @@ public class Graph{
 	return formattedEdges;
       }
 
+    /**
+     * Get a TreeMap of the edges connected to a vertex.
+     *
+     * @param vert The vertex whose edges will be returned.
+     * @return TreeMap The collection of edges.
+     */
     public TreeMap<String,Integer> getEdges(String vert){
 	int location = vertices.indexOf(vert);
 
 	return edges.get(location);
     }
 
+    /**
+     * Find the smallest edge of a certain vertex.
+     *
+     * @param loc The integer location of the edge list to retrieve.
+     * @return String The name of the smallest edge.
+     */
     public String getMinEdge(int loc){
 	// Pull the edges for a certain vertex.
 	TreeMap<String,Integer> edgeSet = edges.get(loc);
@@ -113,11 +151,22 @@ public class Graph{
 	}
 	return minKey;
     }
-
+    
+    /**
+     * Get the list of vertices in the graph.
+     *
+     * @return ArrayList An array of the vertex names.
+     */
     public ArrayList<String> getVerts(){
 	return vertices;
     }
 
+    /**
+     * Get the vertex name of a given index.
+     *
+     * @param loc The location of the vertex name to retrieve.
+     * @return String The name of the vertex.
+     */
     public String getVerts(int loc){
 	return vertices.get(loc);
     }
