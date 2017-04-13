@@ -21,14 +21,17 @@ public class Prim {
 	    System.exit(0);
 	}
 
-	primObj.printInputVerts();
-	primObj.printInputEdges();
-	System.out.println("sizeVerts: " + primObj.sizeInputVerts());
-	System.out.println("sizeEdges: " + primObj.sizeInputEdges());
-	System.out.println("totWeight: " + primObj.inputWeight());
+	//primObj.printInputVerts();
+	//primObj.printInputEdges();
+	//System.out.println("sizeVerts: " + primObj.sizeInputVerts());
+	//System.out.println("sizeEdges: " + primObj.sizeInputEdges());
+	//System.out.println("totWeight: " + primObj.inputWeight());
 
-	primObj.printInputGraph();
+	//primObj.printInputGraph();
 	primObj.createMST();
+	primObj.printInputGraph();
+	System.out.print("\n");
+	primObj.printMSTGraph();
     }
 
     private void readGraph(String[] args){
@@ -163,31 +166,44 @@ public class Prim {
 	// Remove added edge from workingGraph.
 	workingGraph.removeEdge(workingGraph.getVerts(0), minEdge);
 
-	System.out.print("\n");
-	workingGraph.printEdges();
-	System.out.print("\n");
-	printMSTEdges();
+	//System.out.print("\n");
+	//workingGraph.printEdges();
+	//System.out.print("\n");
+	//printMSTEdges();
 
 
-	while(workingGraph.getVerts() != mst.getVerts()){
+	while(!inputGraph.getVerts().equals(mst.getVerts())){
 	    String[] newEdge = getMinConnEdge();
 	    //System.out.println("v1: " + newEdge[0]);
 	    //System.out.println("v2: " + newEdge[1] + "\n");
 	    
 	    mst.addVert(newEdge[1]);
 	    mst.addEdge(newEdge[0],newEdge[1],Integer.parseInt(newEdge[2]));
-	    
+
+	    //System.out.println("Removing added edge: " + newEdge[0] + "," + newEdge[1]);
 	    workingGraph.removeEdge(newEdge[0],newEdge[1]);
-	    
+
+	    //System.out.println("Calling preventCycles()");
 	    preventCycles();
 	    
-	    System.out.println("workingGraph");
-	    workingGraph.printEdges();
-	    System.out.print("\nMST\n");
+	    //System.out.println("workingGraph");
+	    //workingGraph.printEdges();
+	    //System.out.print("\nMST\n");
 	    //mst.printEdges();
 	    //printInputGraph();
-	    printMSTGraph();
-	    System.out.print("\n");
+	    //printMSTGraph();
+	    //System.out.println("inVert: ");
+	    //inputGraph.printVerts();
+	    //System.out.println("mstVert: ");
+	    //mst.printVerts();
+	    //System.out.print("Equal? - ");
+	    if(inputGraph.getVerts() == mst.getVerts()){
+		//System.out.println("true");
+	    }
+	    else{
+		//System.out.println("false");
+	    }
+	    //System.out.print("\n");
 	}
 	/*
 	// Loop to create the rest of the graph.
@@ -318,7 +334,7 @@ public class Prim {
 	    
 	    for(Map.Entry<String,Integer> entry : edgeSet){
 		if(addedVerts.contains(entry.getKey())){
-		    System.out.println("\n\n\nRemoving: " + workingVert + " " + entry.getKey() + "\n\n\n");
+		    //System.out.println("\n\n\nRemoving: " + workingVert + " " + entry.getKey() + "\n\n\n");
 		    workingGraph.removeEdge(workingVert, entry.getKey());
 		}
 	    }
