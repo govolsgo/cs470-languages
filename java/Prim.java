@@ -7,6 +7,7 @@ import java.util.Map;
 public class Prim {
     private Graph inputGraph = new Graph();
     private Graph mst = new Graph();
+    private Graph workingGraph = new Graph();
     
     public static void main(String[] args) {
 	Prim primObj = new Prim();
@@ -29,7 +30,7 @@ public class Prim {
 	primObj.createMST();
     }
 
-    private Graph readGraph(String[] args){
+    private void readGraph(String[] args){
 	try{
 	    int lineCount = 0;
 	    String line;	
@@ -59,12 +60,17 @@ public class Prim {
 		// Add vertices to list.
 		inputGraph.addVert(inputFile.get(i*3));
 		inputGraph.addVert(inputFile.get(i*3+1));
+		workingGraph.addVert(inputFile.get(i*3));
+		workingGraph.addVert(inputFile.get(i*3+1));
 	    }
 	    
 	    // Create edges.
 	    for(int i = 0; i < lineCount; i++){
 		// Add edge to list.
 		inputGraph.addEdge(inputFile.get(i*3),
+				   inputFile.get(i*3+1),
+				   Integer.parseInt(inputFile.get(i*3+2)));
+		workingGraph.addEdge(inputFile.get(i*3),
 				   inputFile.get(i*3+1),
 				   Integer.parseInt(inputFile.get(i*3+2)));
 		
@@ -76,8 +82,6 @@ public class Prim {
 	    System.out.println("Exception: " + e.getMessage());
 	    System.exit(0);
 	}
-
-	return inputGraph;
     }
 
     private void printInputVerts(){
@@ -130,7 +134,7 @@ public class Prim {
     }
 
     private void printMSTGraph(){
-    	ArrayList<String> formattedGraph = inputGraph.getEdges();
+    	ArrayList<String> formattedGraph = mst.getEdges();
 
 	System.out.println("MST Graph:");
 	for(int i = 0; i < formattedGraph.size(); i++){
@@ -139,13 +143,11 @@ public class Prim {
     }
 
     private void createMST(){
-	Graph workingGraph = inputGraph;
-	ArrayList<String> vertsWorking = workingGraph.getVerts();
-	ArrayList<String> vertsMST = mst.getVerts();
 	String minEdge;
 	int minWeight;
 	TreeMap<String,Integer> edgeSet;
-
+	ArrayList<TreeMap<String,Integer>> edgeSets;
+	
 	// First run, prime MST.
 	// Find the smallest edge connected to the first vertex.
 	minEdge = workingGraph.getMinEdge(0);
@@ -156,22 +158,73 @@ public class Prim {
 	mst.addVert(workingGraph.getVerts(0));
 	mst.addVert(minEdge);
 	mst.addEdge(workingGraph.getVerts(0), minEdge, minWeight);
-
+	
 	// Remove added edge from workingGraph.
 	workingGraph.removeEdge(workingGraph.getVerts(0), minEdge);
 
+	System.out.print("\n");
+	workingGraph.printEdges();
+	System.out.print("\n");
+	printMSTEdges();
+
+	String[] newEdge = getMinConnEdge();
+	System.out.println("v1: " + newEdge[0]);
+	System.out.println("v2: " + newEdge[1] + "\n");
+	
+	mst.addVert(newEdge[1]);
+	mst.addEdge(newEdge[0],newEdge[1],Integer.parseInt(newEdge[2]));
+
+	workingGraph.removeEdge(newEdge[0],newEdge[1]);
+
+	System.out.println("big test");
+	workingGraph.printEdges();
+	System.out.print("\n");
+	mst.printEdges();
+	/*
 	// Loop to create the rest of the graph.
-	while(workingGraph.getVerts() != mst.getVerts()){
-	    Graph missingVerts = new Graph();
-	    	    
-	    // Create a Graph object that contains the edges connected to
-	    // vertices not in the MST.
+	while(workingGraph.getVerts() == mst.getVerts()){
+	    edgeSets = new ArrayList<TreeMap<String,Integer>>();
+	    ArrayList<String> verts = new ArrayList<String>();
+	    
 	    for(int i = 0; i < workingGraph.sizeVerts(); i++){
 		if(!mst.getVerts().contains(workingGraph.getVerts(i))){
 		    String vertToAdd = workingGraph.getVerts(i);
-		    missingVerts.addEdgeSet(vertToAdd, workingGraph.getEdges(vertToAdd));
+		    edgeSet = workingGraph.getEdges(vertToAdd);
+		    
+		    TreeMap<String,Integer> connEdgeSet = new TreeMap<String,Integer>();
+
+		    for(Map.Entry<String,Integer> entry : edgeSet.entrySet()){
+			if(mst.getVerts().contains(entry.getKey())){
+			    connEdgeSet.put(entry.getKey(), entry.getValue());
+			}
+		    }
+
+		    edgeSets.add(connEdgeSet);
+		    //missingVerts.addEdgeSet(vertToAdd, workingGraph.getEdges(vertToAdd));
 		}
 	    }
+
+	    System.out.println("Edges:");
+	    for(int i = 0; i < edgeSets.size(); i++){
+		//System.out.print(vertices.get(i) + "\t->\t");
+		// Unpack for printing.
+		TreeMap<String,Integer> temp = edgeSets.get(i);
+		for (Map.Entry<String,Integer> entry : temp.entrySet()) {
+		    System.out.print("(" + entry.getKey() + "," + entry.getValue()+ ")");
+		}
+		System.out.print("\n");
+		}*/
+	
+
+
+
+
+	    
+	    /*Graph missingVerts = new Graph();
+	    	    
+	    // Create a Graph object that contains the edges connected to
+	    // vertices not in the MST.
+	    
 
 	    System.out.println("missingverts:");
 	    missingVerts.printEdges();
@@ -202,8 +255,47 @@ public class Prim {
 		// Save modified TreeMap.
 		missingVerts.updateEdgeSet(missingVerts.getVerts(i), workingEdgeSet);
 
-		System.out.println("made it!");
+		System.out.println("made it!");*/
+	    
+	
+    }
+
+    private String[] getMinConnEdge(){
+	ArrayList<String> vertices = mst.getVerts();
+	String v1 = new String();
+	String v2 = new String();
+	int minEdge = -1;
+	TreeMap<String,Integer> edges;
+	Boolean unInit = true;
+
+	for(int i = 0; i < vertices.size(); i++){
+	    edges = workingGraph.getEdges(vertices.get(i));
+	    if(edges.size() != 0){
+		if(unInit == true){
+		    v1 = vertices.get(i);
+		    v2 = edges.firstKey();
+		    minEdge = edges.get(v2);
+		    unInit = false;
+		}
+		for(Map.Entry<String,Integer> entry : edges.entrySet()){
+		    if(entry.getValue() < minEdge){
+			v1 = vertices.get(i);
+			v2 = entry.getKey();
+			minEdge = entry.getValue();
+		    }
+		}
+		    
+		
 	    }
 	}
+
+	String[] minEdgeVerts = {v1,v2,Integer.toString(minEdge)};
+
+	return minEdgeVerts;
+	
+	//System.out.println("v1: " + v1);
+	//System.out.println("v2: " + v2);
+	//System.out.println("min: " + minEdge);
+	
     }
 }

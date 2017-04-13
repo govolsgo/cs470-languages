@@ -64,7 +64,7 @@ public class Graph{
     public void printEdges(){
 	System.out.println("Edges:");
 	for(int i = 0; i < edges.size(); i++){
-	    System.out.print(vertices.get(i) + "\t->\t");
+	    System.out.print(vertices.get(i) + "\t-> ");
 	    // Unpack for printing.
 	    TreeMap<String,Integer> temp = edges.get(i);
 	    for (Map.Entry<String,Integer> entry : temp.entrySet()) {
