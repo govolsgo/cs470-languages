@@ -91,14 +91,6 @@ public class Prim {
 	}
     }
 
-    public void printInputVerts(){
-	inputGraph.printVerts();
-    }
-
-    public void printInputEdges(){
-	inputGraph.printEdges();
-    }
-
     public int sizeInputVerts(){
 	return inputGraph.sizeVerts();
     }
@@ -120,14 +112,6 @@ public class Prim {
 	for(int i = 0; i < formattedGraph.size(); i++){
 	    System.out.println(formattedGraph.get(i));
 	}
-    }
-
-    public void printMSTVerts(){
-	mst.printVerts();
-    }
-
-    public void printMSTEdges(){
-	mst.printEdges();
     }
 
     public int sizeMSTVerts(){

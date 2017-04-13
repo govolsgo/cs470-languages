@@ -4,10 +4,23 @@ import java.util.Map;
 import java.util.Collections;
 
 public class Graph{
+    // New ArrayList to store the names of the vertices.
     private ArrayList<String> vertices = new ArrayList<String>();
-    private ArrayList<TreeMap<String,Integer>> edges = new ArrayList<TreeMap<String,Integer>>();
+
+    // New ArrayList to store TreeMaps containing the edges.
+    private ArrayList<TreeMap<String,Integer>> edges
+	= new ArrayList<TreeMap<String,Integer>>();
+
+    // New int to track the number of vertices.
     private int numVerts = 0;
+
+    // New int to track the number of edges.
+    // Even though the addEdge function adds the edge in two locations
+    // (to make the graph undirected), this keeps track of the single
+    // edge that was added.
     private int numEdges = 0;
+
+    // New int to track the total weight of the graph.
     private int totWeight = 0;
     
     public void addVert(String newVert){
@@ -26,15 +39,17 @@ public class Graph{
 	}
     }
 
+    /* This function was added for debugging purposes.
     public void printVerts(){
 	System.out.println("Vertices:");
 	for(int i = 0; i < vertices.size(); i++){
 	    System.out.print(i+1);
 	    System.out.println(": " + vertices.get(i));
 	}
-    }
+	}*/
 
     public void addEdge(String vert1, String vert2, int weight){
+	// Get the index location of each vertex to pull the edge data.
 	int loc1 = vertices.indexOf(vert1);
 	int loc2 = vertices.indexOf(vert2);
 	
@@ -48,12 +63,13 @@ public class Graph{
 	numEdges++;
 	totWeight += weight; // Update weight.
 	
-	// Repack the TreeMap.
+	// Save the updated TreeMap.
 	edges.set(loc1,adjList1);
 	edges.set(loc2,adjList2);
     }
-    
-    public void addEdgeSet(String vertex, TreeMap<String,Integer> edgeSet){
+
+    /* RIP THIS OUT
+    private void addEdgeSet(String vertex, TreeMap<String,Integer> edgeSet){
 	addVert(vertex);
 	int loc = vertices.indexOf(vertex);
 	edges.set(loc,edgeSet);
@@ -61,8 +77,9 @@ public class Graph{
 	for (Map.Entry<String,Integer> entry : edgeSet.entrySet()) {
 	    totWeight += entry.getValue();
 	}
-    }
+	}*/
 
+    /* This function was added for debugging purposes.
     public void printEdges(){
 	System.out.println("Edges:");
 	for(int i = 0; i < edges.size(); i++){
@@ -74,7 +91,7 @@ public class Graph{
 	    }
 	    System.out.print("\n");
 	}
-    }
+	}*/
 
     public int sizeVerts(){
 	return numVerts;
@@ -89,11 +106,14 @@ public class Graph{
     }
     
     public ArrayList<String> getEdges(){
+	// Create an ArrayList to store the edges formatted for printing.
 	ArrayList<String> formattedEdges = new ArrayList<String>();
 
 	for(int i = 0; i < edges.size(); i++){
 	    // Unpack to create the ArrayList.
 	    TreeMap<String,Integer> edgeMap = edges.get(i);
+
+	    // Loop through every edge in the TreeMap that was just unpacked.
 	    for (Map.Entry<String,Integer> entry : edgeMap.entrySet()) {
 		String formattedEdge;
 		String reverseFormattedEdge;
@@ -132,6 +152,7 @@ public class Graph{
     }
 
     public void removeEdge(String vert1, String vert2){
+	// Get the index location of each vertex to pull the edge data.
 	int loc1 = vertices.indexOf(vert1);
 	int loc2 = vertices.indexOf(vert2);
 
@@ -143,45 +164,27 @@ public class Graph{
 	totWeight -= adjList1.get(vert2); // Update weight.
 	adjList1.remove(vert2);
 	adjList2.remove(vert1);
-	numEdges--;
+	numEdges--; // Update the number of edges in the graph.
 	
-	// Repack the TreeMap.
+	// Save the updated TreeMap.
 	edges.set(loc1,adjList1);
 	edges.set(loc2,adjList2);
     }
 
     public String getMinEdge(int loc){
+	// Pull the edges for a certain vertex.
 	TreeMap<String,Integer> edgeSet = edges.get(loc);
-	String minKey = edgeSet.firstKey();
 
+	// Keep track of the key for the smallest edge.
+	String minKey = edgeSet.firstKey(); 
+
+	// Loop through the edges, finding the smallest edge.
 	for (Map.Entry<String,Integer> entry : edgeSet.entrySet()) {
+	    // Update the tracker var if a smaller edge is found.
 	    if(entry.getValue() < edgeSet.get(minKey)){
 		minKey = entry.getKey();
 	    }
 	}
 	return minKey;
-    }
-
-    public void updateEdgeSet(String vertex, TreeMap<String,Integer> edgeSet){
-	int loc = vertices.indexOf(vertex);
-	int oldRowWeight = 0;
-	int newRowWeight = 0;
-	int oldRowEdgeCount = 0;
-	int newRowEdgeCount = 0;
-	
-	// Modify tracking vars to prep for update.
-	for(Map.Entry<String,Integer> entry : edgeSet.entrySet()){
-	    newRowEdgeCount++;
-	    newRowWeight += entry.getValue();
-	}
-	for(Map.Entry<String,Integer> entry : getEdges(vertex).entrySet()){
-	    oldRowEdgeCount++;
-	    oldRowWeight += entry.getValue();
-	}
-	numEdges += newRowEdgeCount - oldRowEdgeCount;
-	totWeight += newRowWeight - oldRowWeight;
-
-	// Update the edges.
-	edges.set(loc,edgeSet);
     }
 }
