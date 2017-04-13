@@ -33,9 +33,7 @@ public class Graph{
 	    Collections.sort(vertices);
 	    
 	    // Add a new TreeMap that corresponds to this vert.
-	    edges.add(vertices.indexOf(newVert), new TreeMap<String,Integer>()); 
-
-	     
+	    edges.add(vertices.indexOf(newVert), new TreeMap<String,Integer>());
 	}
     }
 
@@ -68,17 +66,6 @@ public class Graph{
 	edges.set(loc2,adjList2);
     }
 
-    /* RIP THIS OUT
-    private void addEdgeSet(String vertex, TreeMap<String,Integer> edgeSet){
-	addVert(vertex);
-	int loc = vertices.indexOf(vertex);
-	edges.set(loc,edgeSet);
-	numEdges += edgeSet.size();
-	for (Map.Entry<String,Integer> entry : edgeSet.entrySet()) {
-	    totWeight += entry.getValue();
-	}
-	}*/
-
     /* This function was added for debugging purposes.
     public void printEdges(){
 	System.out.println("Edges:");
@@ -87,11 +74,12 @@ public class Graph{
 	    // Unpack for printing.
 	    TreeMap<String,Integer> temp = edges.get(i);
 	    for (Map.Entry<String,Integer> entry : temp.entrySet()) {
-		System.out.print("(" + entry.getKey() + "," + entry.getValue()+ ")");
+		System.out.print("(" + entry.getKey() + ","
+				 + entry.getValue()+ ")");
 	    }
 	    System.out.print("\n");
 	}
-	}*/
+     }*/
 
     public int sizeVerts(){
 	return numVerts;
@@ -123,9 +111,11 @@ public class Graph{
 		formattedEdge += entry.getKey() + "," + entry.getValue() + ")";
 		
 		// Create a string of the same edge, but vertices swapped.
-		// Will use this to make sure the edge is not in the array already.
+		// Will use this to make sure the edge is not in the array
+		// already.
 		reverseFormattedEdge =  "(" + entry.getKey() + ",";
-		reverseFormattedEdge += vertices.get(i) + "," + entry.getValue() + ")";
+		reverseFormattedEdge += vertices.get(i) + ","
+		    + entry.getValue() + ")";
 				
 		// Check if reverseFormattedEdge is in ArrayList.
 		// Add formattedEdge if not.
