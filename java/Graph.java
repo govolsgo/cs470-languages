@@ -22,29 +22,6 @@ public class Graph{
 
     // New int to track the total weight of the graph.
     private int totWeight = 0;
-    
-    public void addVert(String newVert){
-	if(!vertices.contains(newVert)){
-	    // Add the new vertex if it's not already in the list.
-	    vertices.add(newVert);
-	    numVerts++;
-
-	    // Sort the vertex list lexicographically.
-	    Collections.sort(vertices);
-	    
-	    // Add a new TreeMap that corresponds to this vert.
-	    edges.add(vertices.indexOf(newVert), new TreeMap<String,Integer>());
-	}
-    }
-
-    /* This function was added for debugging purposes.
-    public void printVerts(){
-	System.out.println("Vertices:");
-	for(int i = 0; i < vertices.size(); i++){
-	    System.out.print(i+1);
-	    System.out.println(": " + vertices.get(i));
-	}
-	}*/
 
     public void addEdge(String vert1, String vert2, int weight){
 	// Get the index location of each vertex to pull the edge data.
@@ -65,34 +42,21 @@ public class Graph{
 	edges.set(loc1,adjList1);
 	edges.set(loc2,adjList2);
     }
+    
+    public void addVert(String newVert){
+	if(!vertices.contains(newVert)){
+	    // Add the new vertex if it's not already in the list.
+	    vertices.add(newVert);
+	    numVerts++;
 
-    /* This function was added for debugging purposes.
-    public void printEdges(){
-	System.out.println("Edges:");
-	for(int i = 0; i < edges.size(); i++){
-	    System.out.print(vertices.get(i) + "\t-> ");
-	    // Unpack for printing.
-	    TreeMap<String,Integer> temp = edges.get(i);
-	    for (Map.Entry<String,Integer> entry : temp.entrySet()) {
-		System.out.print("(" + entry.getKey() + ","
-				 + entry.getValue()+ ")");
-	    }
-	    System.out.print("\n");
+	    // Sort the vertex list lexicographically.
+	    Collections.sort(vertices);
+	    
+	    // Add a new TreeMap that corresponds to this vert.
+	    edges.add(vertices.indexOf(newVert), new TreeMap<String,Integer>());
 	}
-     }*/
-
-    public int sizeVerts(){
-	return numVerts;
-    }
-    
-    public int sizeEdges(){
-	return numEdges;
     }
 
-    public int weight(){
-	return totWeight;
-    }
-    
     public ArrayList<String> getEdges(){
 	// Create an ArrayList to store the edges formatted for printing.
 	ArrayList<String> formattedEdges = new ArrayList<String>();
@@ -133,6 +97,23 @@ public class Graph{
 	return edges.get(location);
     }
 
+    public String getMinEdge(int loc){
+	// Pull the edges for a certain vertex.
+	TreeMap<String,Integer> edgeSet = edges.get(loc);
+
+	// Keep track of the key for the smallest edge.
+	String minKey = edgeSet.firstKey(); 
+
+	// Loop through the edges, finding the smallest edge.
+	for (Map.Entry<String,Integer> entry : edgeSet.entrySet()) {
+	    // Update the tracker var if a smaller edge is found.
+	    if(entry.getValue() < edgeSet.get(minKey)){
+		minKey = entry.getKey();
+	    }
+	}
+	return minKey;
+    }
+
     public ArrayList<String> getVerts(){
 	return vertices;
     }
@@ -140,6 +121,30 @@ public class Graph{
     public String getVerts(int loc){
 	return vertices.get(loc);
     }
+
+    /* This function was added for debugging purposes.
+    public void printEdges(){
+	System.out.println("Edges:");
+	for(int i = 0; i < edges.size(); i++){
+	    System.out.print(vertices.get(i) + "\t-> ");
+	    // Unpack for printing.
+	    TreeMap<String,Integer> temp = edges.get(i);
+	    for (Map.Entry<String,Integer> entry : temp.entrySet()) {
+		System.out.print("(" + entry.getKey() + ","
+				 + entry.getValue()+ ")");
+	    }
+	    System.out.print("\n");
+	}
+     }*/
+
+    /* This function was added for debugging purposes.
+    public void printVerts(){
+	System.out.println("Vertices:");
+	for(int i = 0; i < vertices.size(); i++){
+	    System.out.print(i+1);
+	    System.out.println(": " + vertices.get(i));
+	}
+     }*/
 
     public void removeEdge(String vert1, String vert2){
 	// Get the index location of each vertex to pull the edge data.
@@ -161,20 +166,15 @@ public class Graph{
 	edges.set(loc2,adjList2);
     }
 
-    public String getMinEdge(int loc){
-	// Pull the edges for a certain vertex.
-	TreeMap<String,Integer> edgeSet = edges.get(loc);
+    public int sizeEdges(){
+	return numEdges;
+    }
 
-	// Keep track of the key for the smallest edge.
-	String minKey = edgeSet.firstKey(); 
+    public int sizeVerts(){
+	return numVerts;
+    }
 
-	// Loop through the edges, finding the smallest edge.
-	for (Map.Entry<String,Integer> entry : edgeSet.entrySet()) {
-	    // Update the tracker var if a smaller edge is found.
-	    if(entry.getValue() < edgeSet.get(minKey)){
-		minKey = entry.getKey();
-	    }
-	}
-	return minKey;
+    public int weight(){
+	return totWeight;
     }
 }
