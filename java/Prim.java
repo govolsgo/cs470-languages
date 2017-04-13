@@ -6,8 +6,13 @@ import java.util.Map;
 import java.util.Set;
 
 public class Prim {
+    // New Graph object to store the graph from the file.
     private Graph inputGraph = new Graph();
+
+    // New Graph object to store the MST we create.
     private Graph mst = new Graph();
+
+    // New Graph object to store a copy of inputGraph we can modify.
     private Graph workingGraph = new Graph();
     
     public static void main(String[] args) {
