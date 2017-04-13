@@ -195,6 +195,12 @@ public class Graph{
 	}
      }*/
 
+    /**
+     * Remove an edge from the graph.
+     *
+     * @param vert1 The name of the first vertex of the edge.
+     * @param vert2 The name of the second vertex of the edge.
+     */
     public void removeEdge(String vert1, String vert2){
 	// Get the index location of each vertex to pull the edge data.
 	int loc1 = vertices.indexOf(vert1);
@@ -215,14 +221,29 @@ public class Graph{
 	edges.set(loc2,adjList2);
     }
 
+    /**
+     * Get the number of edges in the graph.
+     *
+     * @return int The number of edges in the graph.
+     */
     public int sizeEdges(){
 	return numEdges;
     }
 
+    /**
+     * Get the number of vertices in the graph.
+     *
+     * @return int The number of vertices in the graph.
+     */
     public int sizeVerts(){
 	return numVerts;
     }
 
+    /**
+     * Get the weight of the graph.
+     *
+     * @return int The weight of the graph.
+     */
     public int weight(){
 	return totWeight;
     }
