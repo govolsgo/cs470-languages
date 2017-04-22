@@ -36,5 +36,6 @@ visited(B) :- visited(A), tree(A,B,W).
 % Graph is undirected
 edge(A,B,W) :- edge(B,A,W).
 
+% Find the solution by minimizing weight of edges. Display result.
 #minimize {W,A,B : tree(A,B,W)}.
 #show tree/3.
