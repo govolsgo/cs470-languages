@@ -6,3 +6,6 @@
 
 /* Max length of C strings containing vertex names. */
 #define VERT_NAME_LEN 25
+
+/* Max number of characters to represent the weight of an edge. */
+#define WEIGHT_DIGIT_LEN 3
