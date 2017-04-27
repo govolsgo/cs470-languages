@@ -42,6 +42,21 @@ FILE* openFile(char fileName[])
   return file;
 }
 
+void printGraph(char vertexNames[NUM_VERTICES][VERT_NAME_LEN], int vertexSize,
+		char edges[NUM_VERTICES][NUM_EDGES][2][VERT_NAME_LEN],
+		int edgeSize[NUM_VERTICES])
+{
+  int i,j;
+
+  for(i=0; i<vertexSize; i++)
+    {
+      for(j=0; j<edgeSize[i]; j++)
+	{
+	  printf("(%s,%s,%s)\n",vertexNames[i],edges[i][j][0],edges[i][j][1]);
+	}
+    }
+}
+
 void readData(char vertexNames[NUM_VERTICES][VERT_NAME_LEN], int* vertexSize, 
 	      char edges[NUM_VERTICES][NUM_EDGES][2][VERT_NAME_LEN],
 	      int edgeSize[NUM_VERTICES], FILE* file)
