@@ -29,6 +29,8 @@ int main()
 
   readData(graphVertexNames,&graphVertexSize,graphEdges,graphEdgeSize,file);
   fclose(file);
+
+  printGraph(graphVertexNames,graphVertexSize,graphEdges,graphEdgeSize);
   
   return 0;
 }
