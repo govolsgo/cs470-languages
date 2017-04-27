@@ -8,26 +8,26 @@ int main()
 {
   char fileName[1000];
   FILE* file;
-  int vertexSize = 0;
-  char vertexNames[NUM_VERTICES][VERT_NAME_LEN];
-  char edges[NUM_VERTICES][NUM_EDGES][2][VERT_NAME_LEN];
-  int edgeSize[NUM_VERTICES] = {0};
+  
+  int graphVertexSize = 0;
+  int MSTVertexSize = 0;
+
+  char graphVertexNames[NUM_VERTICES][VERT_NAME_LEN];
+  char MSTVertexNames[NUM_VERTICES][VERT_NAME_LEN];
+
+  char graphEdges[NUM_VERTICES][NUM_EDGES][2][VERT_NAME_LEN];
+  int graphEdgeSize[NUM_VERTICES] = {0};
+
+  char workingEdges[NUM_VERTICES][NUM_EDGES][2][VERT_NAME_LEN];
+  int workingEdgeSize[NUM_VERTICES] = {0};
+
+  char MSTEdges[NUM_VERTICES][NUM_EDGES][2][VERT_NAME_LEN];
+  int MSTEdgeSize[NUM_VERTICES] = {0};
   
   getFileName(fileName);
   file = openFile(fileName);
 
-  /* strcpy(vertexNames[50],"Alfa\0"); */
-  
-  readData(vertexNames,&vertexSize,edges,edgeSize,file);
-  
-  /*fscanf(file,"%s",testInput);
-
-  while(!feof(file))
-    {
-      printf("Read: %s\n",testInput);
-      fscanf(file,"%s",testInput);
-    }*/
-
+  readData(graphVertexNames,&graphVertexSize,graphEdges,graphEdgeSize,file);
   fclose(file);
   
   return 0;
