@@ -8,5 +8,5 @@ int findVertIndex(char findMe[], int vertexSize,
 void getFileName(char fileName[]);
 FILE* openFile(char fileName[]);
 void readData(char vertexNames[NUM_VERTICES][VERT_NAME_LEN], int* vertexSize, 
-	      char edges[NUM_VERTICES][NUM_EDGES][2][WEIGHT_DIGIT_LEN],
+	      char edges[NUM_VERTICES][NUM_EDGES][2][VERT_NAME_LEN],
 	      int edgeSize[NUM_VERTICES], FILE* file);
