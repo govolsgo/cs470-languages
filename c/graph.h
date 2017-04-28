@@ -1,5 +1,8 @@
-#include "stdio.h"
-#include "string.h"
+#ifndef GRAPH_H
+#define GRAPH_H
+
+#include <stdio.h>
+#include <string.h>
 #include "prim.h"
 #include "constants.h"
 
@@ -13,3 +16,5 @@ void printGraph(char vertexNames[NUM_VERTICES][VERT_NAME_LEN], int vertexSize,
 void readData(char vertexNames[NUM_VERTICES][VERT_NAME_LEN], int* vertexSize, 
 	      char edges[NUM_VERTICES][NUM_EDGES][2][VERT_NAME_LEN],
 	      int edgeSize[NUM_VERTICES], FILE* file);
+
+#endif
