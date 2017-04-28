@@ -52,7 +52,11 @@ void printGraph(char vertexNames[NUM_VERTICES][VERT_NAME_LEN], int vertexSize,
     {
       for(j=0; j<edgeSize[i]; j++)
 	{
-	  printf("(%s,%s,%s)\n",vertexNames[i],edges[i][j][0],edges[i][j][1]);
+	  if(strcmp(vertexNames[i],edges[i][j][0]) < 0)
+	    {
+	      printf("(%s,%s,%s)\n",
+		     vertexNames[i],edges[i][j][0],edges[i][j][1]);
+	    }
 	}
     }
 }
