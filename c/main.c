@@ -174,3 +174,4 @@ FILE* openFile(char fileName[])
 
   return file;
 }
+
