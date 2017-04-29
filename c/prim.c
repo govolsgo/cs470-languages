@@ -9,9 +9,7 @@ void addEdge(char vert1[VERT_NAME_LEN], char vert2[VERT_NAME_LEN],
   int vert1Loc = findVertIndex(vert1,*vertexSize,vertexNames);
   int vert2Loc = findVertIndex(vert2,*vertexSize,vertexNames);
 
-  printf("vert1Loc: %d\n",vert1Loc);
-  printf("vert2Loc: %d\n",vert2Loc);
-
+  /* If a vertex we are adding isn't in the array yet, add it. */
   if(vert1Loc == -1)
     {
       strcpy(vertexNames[*vertexSize],vert1);
@@ -25,6 +23,7 @@ void addEdge(char vert1[VERT_NAME_LEN], char vert2[VERT_NAME_LEN],
       (*vertexSize)++;
     }
 
+  /* Add the edge to both vertices to ensure graph is undirected. */
   strcpy(edges[vert1Loc][edgeSize[vert1Loc]][0],vert2);
   strcpy(edges[vert1Loc][edgeSize[vert1Loc]][1],weight);
   edgeSize[vert1Loc]++;
@@ -45,8 +44,11 @@ int getMinEdge(int vert, char edges[NUM_VERTICES][NUM_EDGES][2][VERT_NAME_LEN],
 
   for(i = 0; i < edgeSize[vert]; i++)
     {
+      /* Make sure the location we're looking at actually contains an edge. */
       if(atoi(edges[vert][i][1]) != -1)
 	{
+	  /* If we've found a smaller weight, or if this is the first edge,
+	     update tracking variables. */
 	  if(atoi(edges[vert][i][1]) < minEdgeWeight || minEdgeWeight == -1)
 	    {
 	      minEdgeLoc = i;
@@ -69,6 +71,7 @@ void removeEdge(char vert1[VERT_NAME_LEN], char vert2[VERT_NAME_LEN],
   int vert1Edge,vert2Edge;
   int i;
 
+  /* Find the location of the edges in the array. */
   for(i = 0; i < edgeSize[vert1Loc]; i++)
     {
       if(strcmp(vert2,edges[vert1Loc][i][0]) == 0)
@@ -84,6 +87,9 @@ void removeEdge(char vert1[VERT_NAME_LEN], char vert2[VERT_NAME_LEN],
 	}
     }
 
+  /* Remove the edges. 
+     Update the weight with -1 to indicate that no edge exists in this 
+     location. */
   strcpy(edges[vert1Loc][vert1Edge][0],"\0");
   strcpy(edges[vert1Loc][vert1Edge][1],"-1");
   
