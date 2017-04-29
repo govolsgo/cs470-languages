@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "graph.h"
 #include "prim.h"
 #include "constants.h"
@@ -51,26 +52,71 @@ int main(int argc, char* argv[])
   strcpy(vert1,graphVertexNames[0]);
   strcpy(vert2,graphEdges[0][getMinEdge(0,graphEdges,graphEdgeSize)][0]);
   strcpy(weight,graphEdges[0][getMinEdge(0,graphEdges,graphEdgeSize)][1]);
+
   addEdge(vert1,vert2,weight,MSTVertexNames,&MSTVertexSize,MSTEdges,
 	  MSTEdgeSize);
 
-  printf("Pre-remove: %s,%s,%s\n",graphVertexNames[0],graphEdges[0][0][0],
-	 graphEdges[0][0][1]);
-  removeEdge(vert1,vert2,weight,graphVertexNames,&graphVertexSize,graphEdges,
+  removeEdge(vert1,vert2,weight,graphVertexNames,graphVertexSize,graphEdges,
 	     graphEdgeSize);
-  printf("Post-remove: %s,%s,%s\n",graphVertexNames[0],graphEdges[0][0][0],
-	 graphEdges[0][0][1]);
+
   
+  while(graphVertexSize != MSTVertexSize)
+    {
+  
+      int i;
+      int locSize = 0;
+      int locVert[NUM_VERTICES] = {-1};
+      int locEdge[NUM_VERTICES] = {-1};
+      int min[NUM_VERTICES] = {-1};
+      int minLoc = -1;
+      int minVal = -1;
 
-  /*
-  printf("%s -> %s,%s\n",vert1,vert2,weight);
-  printf("MSTVertexNames[0]: %s\n",MSTVertexNames[0]);
-  printf("MSTVertexNames[1]: %s\n",MSTVertexNames[1]);
-  printf("%s,%s,%s\n",MSTVertexNames[1],MSTEdges[1][0][0],MSTEdges[1][0][1]);
-  */
-  /*addEdge(vert1,vert2,weight,graphVertexNames,&graphVertexSize,graphEdges,
-    graphEdgeSize);*/
+      /* Find all connected vertices. */
+      for(i = 0; i < MSTVertexSize; i++)
+	{
+	  int vertexLoc = findVertIndex(MSTVertexNames[i],graphVertexSize,
+					graphVertexNames);
+	  locVert[locSize] = vertexLoc;
+	  locSize++;
+	}
 
+      /* Find all minimal connected edges. */
+      for(i = 0; i < locSize; i++)
+	{
+	  int minLoc = getMinEdge(locVert[i],graphEdges,graphEdgeSize);
+	  locEdge[i] = minLoc;
+	  min[i] = atoi(graphEdges[locVert[i]][minLoc][1]);
+	}
+
+      /* Find the minimal edge. */
+      for(i = 0; i < locSize; i++)
+	{
+	  if((minLoc == -1 || min[i] < minVal) && min[i] != 0)
+	    {
+	      minLoc = i;
+	      minVal = min[i];
+	    }
+	}
+
+      /* Prep for adding the edge. */
+      strcpy(vert1,graphVertexNames[locVert[minLoc]]);
+      strcpy(vert2,graphEdges[locVert[minLoc]][locEdge[minLoc]][0]);
+      strcpy(weight,graphEdges[locVert[minLoc]][locEdge[minLoc]][1]);
+
+      /* Add edge to MST, remove from graph. */
+      addEdge(vert1,vert2,weight,MSTVertexNames,&MSTVertexSize,MSTEdges,
+	      MSTEdgeSize);
+      removeEdge(vert1,vert2,weight,graphVertexNames,graphVertexSize,
+		 graphEdges,graphEdgeSize);
+
+      /* Remove any edges that would cause a cycle. */
+      preventCycles(graphVertexNames,graphVertexSize,graphEdges,graphEdgeSize,
+		    MSTVertexNames,MSTVertexSize);
+    }
+
+      printf("MST Graph:\n");
+      printGraph(MSTVertexNames,MSTVertexSize,MSTEdges,MSTEdgeSize);
+      
   return 0;
 }
 
