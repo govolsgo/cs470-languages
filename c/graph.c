@@ -1,3 +1,13 @@
+/**
+ * @file graph.c
+ * @author Carter Crews
+ * @date  28 Apr 2017
+ * @brief Implementation file for functionality over graphs.
+ *
+ * This file contains the implementation of the functions that operate over graphs.
+ *
+ */
+
 #include "graph.h"
 
 void addEdge(char vert1[VERT_NAME_LEN], char vert2[VERT_NAME_LEN],

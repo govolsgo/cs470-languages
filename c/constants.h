@@ -1,3 +1,13 @@
+/**
+ * @file constants.h
+ * @author Carter Crews
+ * @date  28 Apr 2017
+ * @brief Constant definitions.
+ *
+ * This file contains definitions of constants used throughout the program.
+ *
+ */
+
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 

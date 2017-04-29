@@ -1,10 +1,35 @@
+/**
+ * @file main.c
+ * @author Carter Crews
+ * @date  28 Apr 2017
+ * @brief Prim's Algorithm in C.
+ *
+ * This program creates a minimal spanning tree from a graph read in from a file. 
+ *
+ */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include "graph.h"
 #include "constants.h"
 
+/**
+ * Asks the user for a file to load.
+ * @author Carter Crews
+ * @param fileName   A string containing the file to open.
+ * @date 04/28/2017
+ * @return void
+ */
 void getFileName(char fileName[]);
+
+/**
+ * Opens a file to read in a graph.
+ * @author Carter Crews
+ * @param fileName   A string containing the file to open.
+ * @date 04/28/2017
+ * @return A FILE* object containing a stream to the opened file.
+ */
 FILE* openFile(char fileName[]);
 
 int main(int argc, char* argv[])
