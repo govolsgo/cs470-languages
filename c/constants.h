@@ -1,3 +1,6 @@
+#ifndef CONSTANTS_H
+#define CONSTANTS_H
+
 /* Max number of vertices in the graph. */
 #define NUM_VERTICES 100
 
@@ -7,6 +10,4 @@
 /* Max length of C strings containing vertex names. */
 #define VERT_NAME_LEN 25
 
-/* Might not need this... */
-/* Max number of characters to represent the weight of an edge. */
-#define WEIGHT_DIGIT_LEN 3
+#endif
