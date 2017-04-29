@@ -1,0 +1,235 @@
+\hypertarget{graph_8c}{}\section{graph.\+c File Reference}
+\label{graph_8c}\index{graph.\+c@{graph.\+c}}
+
+
+Implementation file for functionality over graphs.  
+
+
+{\ttfamily \#include \char`\"{}graph.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{graph_8c_aa1a512f9f77cc37113546f1ab178ae8c}{add\+Edge} (char vert1\mbox{[}V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN\mbox{]}, char vert2\mbox{[}V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN\mbox{]}, char weight\mbox{[}V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN\mbox{]}, char vertex\+Names\mbox{[}N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+ES\mbox{]}\mbox{[}V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN\mbox{]}, int $\ast$vertex\+Size, char edges\mbox{[}N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+ES\mbox{]}\mbox{[}N\+U\+M\+\_\+\+E\+D\+G\+ES\mbox{]}\mbox{[}2\mbox{]}\mbox{[}V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN\mbox{]}, int edge\+Size\mbox{[}N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+ES\mbox{]})
+\item 
+int \hyperlink{graph_8c_a5ba6ff710fb420b5f2de59e6bccf5fd6}{find\+Vert\+Index} (char find\+Me\mbox{[}$\,$\mbox{]}, int vertex\+Size, char vertex\+Names\mbox{[}N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+ES\mbox{]}\mbox{[}V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN\mbox{]})
+\item 
+int \hyperlink{graph_8c_a69781d3d0f91efcef314293db8504f4a}{get\+Min\+Edge} (int vert, char edges\mbox{[}N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+ES\mbox{]}\mbox{[}N\+U\+M\+\_\+\+E\+D\+G\+ES\mbox{]}\mbox{[}2\mbox{]}\mbox{[}V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN\mbox{]}, int edge\+Size\mbox{[}N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+ES\mbox{]})
+\item 
+void \hyperlink{graph_8c_a50abcce58652e330d13ac34a70103284}{prevent\+Cycles} (char vertex\+Names\mbox{[}N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+ES\mbox{]}\mbox{[}V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN\mbox{]}, int vertex\+Size, char edges\mbox{[}N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+ES\mbox{]}\mbox{[}N\+U\+M\+\_\+\+E\+D\+G\+ES\mbox{]}\mbox{[}2\mbox{]}\mbox{[}V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN\mbox{]}, int edge\+Size\mbox{[}N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+ES\mbox{]}, char tree\+Vertex\+Names\mbox{[}N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+ES\mbox{]}\mbox{[}V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN\mbox{]}, int tree\+Vertex\+Size)
+\item 
+void \hyperlink{graph_8c_a034a29379347be879f70b21106d1ba7e}{print\+Graph} (char vertex\+Names\mbox{[}N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+ES\mbox{]}\mbox{[}V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN\mbox{]}, int vertex\+Size, char edges\mbox{[}N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+ES\mbox{]}\mbox{[}N\+U\+M\+\_\+\+E\+D\+G\+ES\mbox{]}\mbox{[}2\mbox{]}\mbox{[}V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN\mbox{]}, int edge\+Size\mbox{[}N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+ES\mbox{]})
+\item 
+void \hyperlink{graph_8c_a8887f3cc17815489aade0455e1b00c3c}{read\+Data} (char vertex\+Names\mbox{[}N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+ES\mbox{]}\mbox{[}V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN\mbox{]}, int $\ast$vertex\+Size, char edges\mbox{[}N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+ES\mbox{]}\mbox{[}N\+U\+M\+\_\+\+E\+D\+G\+ES\mbox{]}\mbox{[}2\mbox{]}\mbox{[}V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN\mbox{]}, int edge\+Size\mbox{[}N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+ES\mbox{]}, F\+I\+LE $\ast$file)
+\item 
+void \hyperlink{graph_8c_a021e9741fe4b2e374867ca669d1018c8}{remove\+Edge} (char vert1\mbox{[}V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN\mbox{]}, char vert2\mbox{[}V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN\mbox{]}, char weight\mbox{[}V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN\mbox{]}, char vertex\+Names\mbox{[}N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+ES\mbox{]}\mbox{[}V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN\mbox{]}, int vertex\+Size, char edges\mbox{[}N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+ES\mbox{]}\mbox{[}N\+U\+M\+\_\+\+E\+D\+G\+ES\mbox{]}\mbox{[}2\mbox{]}\mbox{[}V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN\mbox{]}, int edge\+Size\mbox{[}N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+ES\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation file for functionality over graphs. 
+
+\begin{DoxyAuthor}{Author}
+Carter Crews 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+28 Apr 2017 This file contains the implementation of the functions that operate over graphs. 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{graph_8c_aa1a512f9f77cc37113546f1ab178ae8c}\label{graph_8c_aa1a512f9f77cc37113546f1ab178ae8c}} 
+\index{graph.\+c@{graph.\+c}!add\+Edge@{add\+Edge}}
+\index{add\+Edge@{add\+Edge}!graph.\+c@{graph.\+c}}
+\subsubsection{\texorpdfstring{add\+Edge()}{addEdge()}}
+{\footnotesize\ttfamily void add\+Edge (\begin{DoxyParamCaption}\item[{char}]{vert1\mbox{[}\+V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\mbox{]},  }\item[{char}]{vert2\mbox{[}\+V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\mbox{]},  }\item[{char}]{weight\mbox{[}\+V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\mbox{]},  }\item[{char}]{vertex\+Names\mbox{[}\+N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+E\+S\mbox{]}\mbox{[}\+V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\mbox{]},  }\item[{int $\ast$}]{vertex\+Size,  }\item[{char}]{edges\mbox{[}\+N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+E\+S\mbox{]}\mbox{[}\+N\+U\+M\+\_\+\+E\+D\+G\+E\+S\mbox{]}\mbox{[}2\mbox{]}\mbox{[}\+V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\mbox{]},  }\item[{int}]{edge\+Size\mbox{[}\+N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+E\+S\mbox{]} }\end{DoxyParamCaption})}
+
+Adds an edge to a graph. \begin{DoxyAuthor}{Author}
+Carter Crews 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em vert1} & A string containing the name of the first vertex of the edge. \\
+\hline
+{\em vert2} & A string containing the name of the second vertex of the edge. \\
+\hline
+{\em weight} & A string containing the weight of the edge. \\
+\hline
+{\em vertex\+Names} & An array of strings containing names of vertices. \\
+\hline
+{\em vertex\+Size} & A pointer to the size of vertex\+Names. \\
+\hline
+{\em edges} & An array containing the edges. \\
+\hline
+{\em edge\+Size} & An array containing the number of edges in every row of the edges parameter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyDate}{Date}
+04/28/2017 
+\end{DoxyDate}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{graph_8c_a5ba6ff710fb420b5f2de59e6bccf5fd6}\label{graph_8c_a5ba6ff710fb420b5f2de59e6bccf5fd6}} 
+\index{graph.\+c@{graph.\+c}!find\+Vert\+Index@{find\+Vert\+Index}}
+\index{find\+Vert\+Index@{find\+Vert\+Index}!graph.\+c@{graph.\+c}}
+\subsubsection{\texorpdfstring{find\+Vert\+Index()}{findVertIndex()}}
+{\footnotesize\ttfamily int find\+Vert\+Index (\begin{DoxyParamCaption}\item[{char}]{find\+Me\mbox{[}$\,$\mbox{]},  }\item[{int}]{vertex\+Size,  }\item[{char}]{vertex\+Names\mbox{[}\+N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+E\+S\mbox{]}\mbox{[}\+V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\mbox{]} }\end{DoxyParamCaption})}
+
+Finds the index location in the array of vertex names of a given vertex. \begin{DoxyAuthor}{Author}
+Carter Crews 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em find\+Me} & A string containing the vertex to find. \\
+\hline
+{\em vertex\+Size} & The size of vertex\+Names. \\
+\hline
+{\em vertex\+Names} & An array of strings containing names of vertices. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyDate}{Date}
+04/28/2017 
+\end{DoxyDate}
+\begin{DoxyReturn}{Returns}
+Location of find\+Me in vertex\+Names. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{graph_8c_a69781d3d0f91efcef314293db8504f4a}\label{graph_8c_a69781d3d0f91efcef314293db8504f4a}} 
+\index{graph.\+c@{graph.\+c}!get\+Min\+Edge@{get\+Min\+Edge}}
+\index{get\+Min\+Edge@{get\+Min\+Edge}!graph.\+c@{graph.\+c}}
+\subsubsection{\texorpdfstring{get\+Min\+Edge()}{getMinEdge()}}
+{\footnotesize\ttfamily int get\+Min\+Edge (\begin{DoxyParamCaption}\item[{int}]{vert,  }\item[{char}]{edges\mbox{[}\+N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+E\+S\mbox{]}\mbox{[}\+N\+U\+M\+\_\+\+E\+D\+G\+E\+S\mbox{]}\mbox{[}2\mbox{]}\mbox{[}\+V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\mbox{]},  }\item[{int}]{edge\+Size\mbox{[}\+N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+E\+S\mbox{]} }\end{DoxyParamCaption})}
+
+Finds the smallest edge in a row of the array of edges. \begin{DoxyAuthor}{Author}
+Carter Crews 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em vert} & Row of edges to search. \\
+\hline
+{\em edges} & An array containing the edges. \\
+\hline
+{\em edge\+Size} & An array containing the number of edges in every row of the edges parameter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyDate}{Date}
+04/28/2017 
+\end{DoxyDate}
+\begin{DoxyReturn}{Returns}
+Location of the smallest edge of a given row in the array of edges. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{graph_8c_a50abcce58652e330d13ac34a70103284}\label{graph_8c_a50abcce58652e330d13ac34a70103284}} 
+\index{graph.\+c@{graph.\+c}!prevent\+Cycles@{prevent\+Cycles}}
+\index{prevent\+Cycles@{prevent\+Cycles}!graph.\+c@{graph.\+c}}
+\subsubsection{\texorpdfstring{prevent\+Cycles()}{preventCycles()}}
+{\footnotesize\ttfamily void prevent\+Cycles (\begin{DoxyParamCaption}\item[{char}]{vertex\+Names\mbox{[}\+N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+E\+S\mbox{]}\mbox{[}\+V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\mbox{]},  }\item[{int}]{vertex\+Size,  }\item[{char}]{edges\mbox{[}\+N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+E\+S\mbox{]}\mbox{[}\+N\+U\+M\+\_\+\+E\+D\+G\+E\+S\mbox{]}\mbox{[}2\mbox{]}\mbox{[}\+V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\mbox{]},  }\item[{int}]{edge\+Size\mbox{[}\+N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+E\+S\mbox{]},  }\item[{char}]{tree\+Vertex\+Names\mbox{[}\+N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+E\+S\mbox{]}\mbox{[}\+V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\mbox{]},  }\item[{int}]{tree\+Vertex\+Size }\end{DoxyParamCaption})}
+
+Finds all edges where both vertices are in the M\+ST and removes them. \begin{DoxyAuthor}{Author}
+Carter Crews 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em vertex\+Names} & An array of strings containing names of all vertices. \\
+\hline
+{\em vertex\+Size} & The size of vertex\+Names. \\
+\hline
+{\em edges} & An array containing the edges. \\
+\hline
+{\em edge\+Size} & An array containing the number of edges in every row of the edges parameter. \\
+\hline
+{\em tree\+Vertex\+Names} & An array of strings containing names of vertices in the M\+ST. \\
+\hline
+{\em tree\+Vertex\+Size} & The size of tree\+Vertex\+Names. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyDate}{Date}
+04/28/2017 
+\end{DoxyDate}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{graph_8c_a034a29379347be879f70b21106d1ba7e}\label{graph_8c_a034a29379347be879f70b21106d1ba7e}} 
+\index{graph.\+c@{graph.\+c}!print\+Graph@{print\+Graph}}
+\index{print\+Graph@{print\+Graph}!graph.\+c@{graph.\+c}}
+\subsubsection{\texorpdfstring{print\+Graph()}{printGraph()}}
+{\footnotesize\ttfamily void print\+Graph (\begin{DoxyParamCaption}\item[{char}]{vertex\+Names\mbox{[}\+N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+E\+S\mbox{]}\mbox{[}\+V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\mbox{]},  }\item[{int}]{vertex\+Size,  }\item[{char}]{edges\mbox{[}\+N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+E\+S\mbox{]}\mbox{[}\+N\+U\+M\+\_\+\+E\+D\+G\+E\+S\mbox{]}\mbox{[}2\mbox{]}\mbox{[}\+V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\mbox{]},  }\item[{int}]{edge\+Size\mbox{[}\+N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+E\+S\mbox{]} }\end{DoxyParamCaption})}
+
+Prints a graph to the console. \begin{DoxyAuthor}{Author}
+Carter Crews 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em vertex\+Names} & An array of strings containing names of vertices. \\
+\hline
+{\em vertex\+Size} & The size of vertex\+Names. \\
+\hline
+{\em edges} & An array containing the edges. \\
+\hline
+{\em edge\+Size} & An array containing the number of edges in every row of the edges parameter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyDate}{Date}
+04/28/2017 
+\end{DoxyDate}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{graph_8c_a8887f3cc17815489aade0455e1b00c3c}\label{graph_8c_a8887f3cc17815489aade0455e1b00c3c}} 
+\index{graph.\+c@{graph.\+c}!read\+Data@{read\+Data}}
+\index{read\+Data@{read\+Data}!graph.\+c@{graph.\+c}}
+\subsubsection{\texorpdfstring{read\+Data()}{readData()}}
+{\footnotesize\ttfamily void read\+Data (\begin{DoxyParamCaption}\item[{char}]{vertex\+Names\mbox{[}\+N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+E\+S\mbox{]}\mbox{[}\+V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\mbox{]},  }\item[{int $\ast$}]{vertex\+Size,  }\item[{char}]{edges\mbox{[}\+N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+E\+S\mbox{]}\mbox{[}\+N\+U\+M\+\_\+\+E\+D\+G\+E\+S\mbox{]}\mbox{[}2\mbox{]}\mbox{[}\+V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\mbox{]},  }\item[{int}]{edge\+Size\mbox{[}\+N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+E\+S\mbox{]},  }\item[{F\+I\+LE $\ast$}]{file }\end{DoxyParamCaption})}
+
+Reads a graph in from a file. \begin{DoxyAuthor}{Author}
+Carter Crews 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em vertex\+Names} & An array of strings containing names of vertices. \\
+\hline
+{\em A} & pointer to the size of vertex\+Names. \\
+\hline
+{\em edges} & An array containing the edges. \\
+\hline
+{\em edge\+Size} & An array containing the number of edges in every row of the edges parameter. \\
+\hline
+{\em file} & A stream to the file to read in. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyDate}{Date}
+04/28/2017 
+\end{DoxyDate}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{graph_8c_a021e9741fe4b2e374867ca669d1018c8}\label{graph_8c_a021e9741fe4b2e374867ca669d1018c8}} 
+\index{graph.\+c@{graph.\+c}!remove\+Edge@{remove\+Edge}}
+\index{remove\+Edge@{remove\+Edge}!graph.\+c@{graph.\+c}}
+\subsubsection{\texorpdfstring{remove\+Edge()}{removeEdge()}}
+{\footnotesize\ttfamily void remove\+Edge (\begin{DoxyParamCaption}\item[{char}]{vert1\mbox{[}\+V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\mbox{]},  }\item[{char}]{vert2\mbox{[}\+V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\mbox{]},  }\item[{char}]{weight\mbox{[}\+V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\mbox{]},  }\item[{char}]{vertex\+Names\mbox{[}\+N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+E\+S\mbox{]}\mbox{[}\+V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\mbox{]},  }\item[{int}]{vertex\+Size,  }\item[{char}]{edges\mbox{[}\+N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+E\+S\mbox{]}\mbox{[}\+N\+U\+M\+\_\+\+E\+D\+G\+E\+S\mbox{]}\mbox{[}2\mbox{]}\mbox{[}\+V\+E\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\mbox{]},  }\item[{int}]{edge\+Size\mbox{[}\+N\+U\+M\+\_\+\+V\+E\+R\+T\+I\+C\+E\+S\mbox{]} }\end{DoxyParamCaption})}
+
+Removes an edge from the graph. \begin{DoxyAuthor}{Author}
+Carter Crews 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em vert1} & A string containing the name of the first vertex of the edge. \\
+\hline
+{\em vert2} & A string containing the name of the second vertex of the edge. \\
+\hline
+{\em weight} & A string containing the weight of the edge. \\
+\hline
+{\em vertex\+Names} & An array of strings containing names of vertices. \\
+\hline
+{\em vertex\+Size} & The size of vertex\+Names. \\
+\hline
+{\em edges} & An array containing the edges. \\
+\hline
+{\em edge\+Size} & An array containing the number of edges in every row of the edges parameter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyDate}{Date}
+04/28/2017 
+\end{DoxyDate}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
