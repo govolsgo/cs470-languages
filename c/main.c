@@ -49,20 +49,23 @@ int main(int argc, char* argv[])
   printGraph(graphVertexNames,graphVertexSize,graphEdges,graphEdgeSize);
   printf("\n");
 
+  /* Prime the MST graph before entering the while loop. */
+  /* Find the smallest edge connected to the first vertex in the input graph. */
   strcpy(vert1,graphVertexNames[0]);
   strcpy(vert2,graphEdges[0][getMinEdge(0,graphEdges,graphEdgeSize)][0]);
   strcpy(weight,graphEdges[0][getMinEdge(0,graphEdges,graphEdgeSize)][1]);
 
+  /* Add the edge to the MST. */
   addEdge(vert1,vert2,weight,MSTVertexNames,&MSTVertexSize,MSTEdges,
 	  MSTEdgeSize);
 
+  /* Remove the edge from the input graph. */
   removeEdge(vert1,vert2,weight,graphVertexNames,graphVertexSize,graphEdges,
 	     graphEdgeSize);
 
-  
+  /* Master while loop to find and add the remaining edges in the MST. */
   while(graphVertexSize != MSTVertexSize)
     {
-  
       int i;
       int locSize = 0;
       int locVert[NUM_VERTICES] = {-1};
@@ -71,7 +74,7 @@ int main(int argc, char* argv[])
       int minLoc = -1;
       int minVal = -1;
 
-      /* Find all connected vertices. */
+      /* Find the location in the input graph of all vertices in the MST . */
       for(i = 0; i < MSTVertexSize; i++)
 	{
 	  int vertexLoc = findVertIndex(MSTVertexNames[i],graphVertexSize,
@@ -114,8 +117,9 @@ int main(int argc, char* argv[])
 		    MSTVertexNames,MSTVertexSize);
     }
 
-      printf("MST Graph:\n");
-      printGraph(MSTVertexNames,MSTVertexSize,MSTEdges,MSTEdgeSize);
+  /* Print the MST. */
+  printf("MST Graph:\n");
+  printGraph(MSTVertexNames,MSTVertexSize,MSTEdges,MSTEdgeSize);
       
   return 0;
 }
