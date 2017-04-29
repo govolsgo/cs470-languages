@@ -2,8 +2,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include "graph.h"
-#include "prim.h"
 #include "constants.h"
+
+void getFileName(char fileName[]);
+FILE* openFile(char fileName[]);
 
 int main(int argc, char* argv[])
 {
@@ -124,4 +126,26 @@ int main(int argc, char* argv[])
   return 0;
 }
 
+void getFileName(char fileName[])
+{
+  printf("Enter graph file name: ");
+  scanf("%999s",fileName);
 
+  return;
+}
+
+FILE* openFile(char fileName[])
+{
+  FILE* file;
+  file = fopen(fileName,"r");
+
+  /* Make sure we opened the file. Retry if not. */
+  while(file == NULL)
+    {
+      printf("Can't open file.\n");
+      getFileName(fileName);
+      file = fopen(fileName,"r");
+    }
+
+  return file;
+}
