@@ -60,14 +60,52 @@ int getMinEdge(int vert, char edges[NUM_VERTICES][NUM_EDGES][2][VERT_NAME_LEN],
   return minEdgeLoc;
 }
 
+void preventCycles(char vertexNames[NUM_VERTICES][VERT_NAME_LEN],
+		   int vertexSize,
+		   char edges[NUM_VERTICES][NUM_EDGES][2][VERT_NAME_LEN],
+		   int edgeSize[NUM_VERTICES],
+		   char treeVertexNames[NUM_VERTICES][VERT_NAME_LEN],
+		   int treeVertexSize)
+{
+  int i,j;
+
+  for(i = 0; i < vertexSize; i++)
+    {
+      for(j = 0; j < edgeSize[i]; j++)
+	{
+	  int vert1Loc;
+	  int vert2Loc;
+	  char vert1[VERT_NAME_LEN];
+	  char vert2[VERT_NAME_LEN];
+	  char weight[VERT_NAME_LEN];
+
+	  strcpy(vert1,vertexNames[i]);
+	  strcpy(vert2,edges[i][j][0]);
+	  strcpy(weight,edges[i][j][1]);
+
+	  if(strcmp(vert2,"\0") != 0)
+	    {
+	      vert1Loc = findVertIndex(vert1,treeVertexSize,treeVertexNames);
+	      vert2Loc = findVertIndex(vert2,treeVertexSize,treeVertexNames);
+
+	      if(vert1Loc != -1 && vert2Loc != -1)
+		{
+		  removeEdge(vert1,vert2,weight,vertexNames,vertexSize,edges,
+			     edgeSize);
+		}
+	    }
+	}
+    }
+}
+
 void removeEdge(char vert1[VERT_NAME_LEN], char vert2[VERT_NAME_LEN],
 		char weight[VERT_NAME_LEN],
-		char vertexNames[NUM_VERTICES][VERT_NAME_LEN], int* vertexSize,
+		char vertexNames[NUM_VERTICES][VERT_NAME_LEN], int vertexSize,
 		char edges[NUM_VERTICES][NUM_EDGES][2][VERT_NAME_LEN],
 		int edgeSize[NUM_VERTICES])
 {
-  int vert1Loc = findVertIndex(vert1,*vertexSize,vertexNames);
-  int vert2Loc = findVertIndex(vert2,*vertexSize,vertexNames);
+  int vert1Loc = findVertIndex(vert1,vertexSize,vertexNames);
+  int vert2Loc = findVertIndex(vert2,vertexSize,vertexNames);
   int vert1Edge,vert2Edge;
   int i;
 

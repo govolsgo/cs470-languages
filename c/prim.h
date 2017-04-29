@@ -14,9 +14,16 @@ void addEdge(char vert1[VERT_NAME_LEN], char vert2[VERT_NAME_LEN],
 int getMinEdge(int vert, char edges[NUM_VERTICES][NUM_EDGES][2][VERT_NAME_LEN],
 	       int edgeSize[NUM_VERTICES]);
 
+void preventCycles(char vertexNames[NUM_VERTICES][VERT_NAME_LEN],
+		   int vertexSize,
+		   char edges[NUM_VERTICES][NUM_EDGES][2][VERT_NAME_LEN],
+		   int edgeSize[NUM_VERTICES],
+		   char treeVertexNames[NUM_VERTICES][VERT_NAME_LEN],
+		   int treeVertexSize);
+
 void removeEdge(char vert1[VERT_NAME_LEN], char vert2[VERT_NAME_LEN],
 		char weight[VERT_NAME_LEN],
-		char vertexNames[NUM_VERTICES][VERT_NAME_LEN], int* vertexSize,
+		char vertexNames[NUM_VERTICES][VERT_NAME_LEN], int vertexSize,
 		char edges[NUM_VERTICES][NUM_EDGES][2][VERT_NAME_LEN],
 		int edgeSize[NUM_VERTICES]);
 
